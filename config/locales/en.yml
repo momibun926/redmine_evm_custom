@@ -1,0 +1,54 @@
+﻿# English strings go here for Rails i18n
+en:
+  # Setting Tab
+  label_baseline: Baseline
+  label_baseline_plural: Baselines
+  label_baseline_version: Baseline Version
+  label_baseline_set: Set Baseline
+  label_due_date: Due Date
+  label_created_date: Created Date
+  label_current_baseline: Current
+  label_old_baseline: Old
+  label_select_baseline: Select Baseline
+  label_update_estimated_hours: Assume the spent time as planned hours in closed tasks
+  # Message
+  error_no_baseline: Please set a baseline before proceeding
+  error_no_issues: Please set a issue before proceeding
+  warning_log_time_with_no_issue: Actual cost is not accurate. There are log times with no issue associated.
+  warning_log_time_before_start_date: Actual cost is not accurate. There are log times before the project start date.
+  # Main form
+  title_evm_tab: EVM Indicators
+  subtitle_evm_tab: Here you can see how your project is progressing relative to the plan seted
+  subtitle_evm_summary: EVM　Value
+  subtitle_evm_graph: EVM Charts
+  # Legend
+  label_evm_legend_pv: Planned Value (PV)
+  label_evm_legend_ac: Actual Cost (AC)
+  label_evm_legend_ev: Earned Value (EV)
+  label_evm_legend_actual: Actual Values
+  label_evm_legend_predicted: Predicted values
+  # Tooltip
+  label_forecast: display Forecast
+  label_display_version: display version graph
+  explanation_bac: Budget At Completion (BAC) is the total budget allocated to the project.
+  explanation_pv: Planned Value (PV) is the total cost of the work scheduled/planned as of a reporting date.
+  explanation_ev: Earned Value (EV) is the total cost of the work completed/performed as of a reporting date.
+  explanation_ac: Actual Cost (AC) is the total cost taken to complete the work as of a reporting date.
+  explanation_sv: Schedule Variance indicates how much ahead or behind schedule the project is.
+  explanation_cv: Cost Variance (CV) indicates how much over or under budget the project is.
+  explanation_spi: Schedule Performance Indicator is an index showing the efficiency of the time utilized on the project. 
+  explanation_cpi: Cost Performance Indicator is an index showing the efficiency of the utilization of the resources on the project. 
+  explanation_complete: Completed Planned
+  explanation_eac: Estimate At Completion (EAC) is the estimated cost of the project at the end of the project.(difference value)
+  explanation_etc: Estimate To Complete (ETC) is the estimated cost required to complete the remainder of the project.
+  explanation_vac: Variance At completion (VAC) is the variance on the total budget at the end of the project.
+  explanation_difference_end_date: Difference planed end date and Estimate To Complete date.
+  # Indicator table header
+  indicator_table_header_date: DATE
+  indicator_table_header_today: Today's Value
+  indicator_table_header_difference: Difference
+  indicator_table_header_performance: Performance
+  indicator_table_header_forecast: Forecast
+  # Indicator table legend
+  explanation_upper_row: Upper row is hours value.
+  explanation_lower_row: Lower row is days value.(1day=8H)

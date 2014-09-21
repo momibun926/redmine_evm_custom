@@ -1,0 +1,112 @@
+
+/*** Title ***/
+#evm-subtitle
+{ 
+  color: gray; 
+}
+
+/*** summary evm indicator ***/
+#evm-indicator-value-table
+{
+  border-collapse: collapse;
+}
+#evm-indicator-value-table th,
+#evm-indicator-value-table td
+{
+  width: 60px;
+  padding: 2px;
+  text-align: center;
+  border: 1px solid #bbb; 
+}
+#evm-indicator-value-table th
+{
+  background-color: #eee;
+}
+
+/*** Dropdown Box ***/
+#baseline_id{ border-radius: 0; }
+#baseline_id option{ color: #eee; }
+
+/*** Graph area ***/
+#evm-charts-wrapper
+{
+  width: 90%;
+}
+#evm-graph-lines
+{
+  height: 400px;
+}
+
+/*** Legend ***/
+#evm-legend
+{
+  margin-left: auto;
+  margin-right: auto;
+  color: #333;
+}
+#evm-legend-pv
+{
+  padding: 5px;
+  border-top: 3px solid #0f75bc; 
+}
+#evm-legend-ev
+{
+  padding: 5px;
+  border-top: 3px solid #8cc63f; 
+}
+#evm-legend-ac
+{
+  padding: 5px;
+  border-top: 3px solid #fcb040; 
+}
+#evm-legend-actual
+{
+  padding: 5px;
+  border-top: 3px dotted #fcb040; 
+}
+#evm-legend-predicted
+{
+  padding: 5px;
+  border-top: 3px dotted #8cc63f; 
+}
+
+/*** Tooltip - Chart ***/
+#flot_chart_tooltip
+{
+  position: absolute;
+  display: none;
+  border: 1px solid #ddd;
+  padding: 2px;
+  background-color: #eee;
+  opacity: 0.80;
+}
+.markers
+{
+  padding: 2px;
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #d0d0d0;
+  font-size: smaller;
+}
+/*** Tooltip - EVM value ***/
+a.tooltip:hover
+{
+  text-decoration: none;
+}
+a.tooltip span
+{
+  display: none;
+  padding: 2px;
+  font-size: 12px;
+  margin-left: 8px;
+  line-height: 1.6;
+}
+a.tooltip:hover span
+{
+  display: inline;
+  position: absolute;
+  background-color: #FFF7EE;
+  border: 1px solid #cccccc;
+  color: #000000;
+  width: 200px;
+}

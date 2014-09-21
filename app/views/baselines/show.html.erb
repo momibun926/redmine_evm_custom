@@ -1,0 +1,139 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'evm', :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'moment',            :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'flot',              :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'flottime',          :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'flotlabel',         :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'flottooltip',       :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'flotdashes',        :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'drawchart',         :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'drawindicators',    :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag '../../../javascripts/select_list_move', :plugin => 'redmine_evm' %>
+<% end %>
+
+<!--Title-->
+<h2><%=l(:title_evm_tab)%></h2>
+<% html_title('EVM Indicators') %>
+<p id="evm-subtitle"><%=l(:subtitle_evm_tab)%></p>
+
+<!-- Dropdown for baselines -->
+<%= form_tag baseline_path, method: :get, id: 'query_form' do %>
+  <fieldset id="filters" class="collapsible ">
+    <legend onclick="toggleFieldset(this);"><%= l(:label_baseline_plural) %></legend>
+    <div>
+      <!-- Dropdown for baselines -->
+      <%= collection_select :baseline, :id, @baselines, :id, :name %>
+      <!-- Forecast -->
+      <% unless @project.actual_cost(@baseline) == 0 %>
+      <%= check_box_tag 'forecast' , 'true', @forecast_is_enabled  %>
+      <%= label_tag l(:label_forecast) %>
+      <% end %>
+      <!-- Display Version Graph -->
+      <%= check_box_tag 'display_version' , 'true', @display_version_is_enabled %>
+      <%= label_tag l(:label_display_version) %>
+    </div>
+  </fieldset>
+  <p class="buttons">
+    <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
+    <!-- submit_query_form is from redmine application.js -->
+  </p>
+<% end %>
+
+<!--Indicator value-->
+<h3><%= l(:subtitle_evm_summary)%></h3>
+<% if @project.earned_value(@baseline) != 0 %>
+  <table id="evm-indicator-value-table">
+    <tr>
+      <th rowspan="2"><%=l(:indicator_table_header_date)%></th>
+      <th colspan="5"><%=l(:indicator_table_header_today)%></th>
+      <th colspan="2"><%=l(:indicator_table_header_difference)%></th>
+      <th colspan="2"><%=l(:indicator_table_header_performance)%></th>
+      <% if @forecast_is_enabled %>
+        <th colspan="4"><%=l(:indicator_table_header_forecast)%></th>
+      <% end %>
+    </tr>
+    <tr>
+      <th><a href="#" class="tooltip">BAC<span><%=l(:explanation_bac)%></span></a></th>
+      <th><a href="#" class="tooltip">Complete<span><%=l(:explanation_complete)%></span></a></th>
+      <th><a href="#" class="tooltip">PV<span><%=l(:explanation_pv)%></span></a></th>
+      <th><a href="#" class="tooltip">EV<span><%=l(:explanation_ev)%></span></a></th>
+      <th><a href="#" class="tooltip">AC<span><%=l(:explanation_ac)%></span></a></th>
+      <th><a href="#" class="tooltip">SV<span><%=l(:explanation_sv)%></span></a></th>
+      <th><a href="#" class="tooltip">CV<span><%=l(:explanation_cv)%></span></a></th>
+      <th><a href="#" class="tooltip">SPI<span><%=l(:explanation_spi)%></span></a></th>
+      <th><a href="#" class="tooltip">CPI<span><%=l(:explanation_cpi)%></span></a></th>
+      <% if @forecast_is_enabled %>
+        <th><a href="#" class="tooltip">EAC<span><%=l(:explanation_eac)%></span></a></th>
+        <th><a href="#" class="tooltip">ETC<span><%=l(:explanation_etc)%></span></a></th>
+        <th><a href="#" class="tooltip">VAC<span><%=l(:explanation_vac)%></span></a></th>
+        <th><a href="#" class="tooltip">Difference end date<span><%=l(:explanation_difference_end_date)%></span></a></th>
+      <% end %>
+    </tr>
+    <tr>
+      <td rowspan="2"><%= @baseline.today_date%></td>
+      <td><%= @baseline.project_budget_at_completion %></td>
+      <td rowspan="2"><%= @baseline.completed_ev %>%</td>
+      <td><%= @baseline.today_pv %> </td>
+      <td><%= @baseline.today_ev %></td>
+      <td><%= @baseline.today_ac %></td>
+      <td><%= @baseline.schedule_variance %></td>
+      <td><%= @baseline.cost_variance %></td>
+      <td rowspan="2"><%= @baseline.schedule_performance_index %> </td>
+      <td rowspan="2"><%= @baseline.cost_performance_index %></td>
+      <% if @forecast_is_enabled %>
+        <td><%= @baseline.estimate_at_completion %> </td>
+        <td><%= @baseline.estimate_to_complete %> </td>
+        <td><%= @baseline.variance_at_completion %></td>
+        <td rowspan="2"><%= @baseline.difference_bac_eac_days %> Days</td>
+      <% end %>
+    </tr>
+    <tr>
+      <td><%= (@baseline.project_budget_at_completion / 8).round(1) %></td>
+      <td><%= (@baseline.today_pv / 8).round(1) %> </td>
+      <td><%= (@baseline.today_ev / 8).round(1) %></td>
+      <td><%= (@baseline.today_ac / 8).round(1) %></td>
+      <td><%= (@baseline.schedule_variance / 8).round(1) %></td>
+      <td><%= (@baseline.cost_variance / 8).round(1) %></td>
+      <% if @forecast_is_enabled %>
+        <td><%= (@baseline.estimate_at_completion / 8).round(1) %> </td>
+        <td><%= (@baseline.estimate_to_complete / 8).round(1) %> </td>
+        <td><%= (@baseline.variance_at_completion / 8).round(1) %></td>
+      <% end %>
+    </tr>
+  </table>
+  <%= l(:explanation_upper_row)%> <%= l(:explanation_lower_row)%>
+<% end %>
+</br>
+</br>
+<!--Charts-->
+<h3><%= l(:subtitle_evm_graph)%></h3>
+<div id="evm-charts-wrapper">
+  <!-- Main Chart -->
+  <div id="evm-main-chart">
+    <h3 class="version"> All</h3>
+    <div id='evm-graph-lines'></div>
+    <%= render :partial => '/baselines/chart_js', :locals => { maximum_chart_date: @project.maximum_chart_date(@baseline), project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled) } %>
+  </div>
+  </br>
+  <!-- Versions Charts -->
+  <% if @display_version_is_enabled %>
+    <div id="evm-versions-charts">
+      <% @project.versions.each do |version| %>
+        <% unless version.is_excluded(@baseline) %>
+          <h3 class="version"> <%= version.name %></h3>
+          <div id='evm-graph-lines-version-<%= version.id %>' style="height:300px;"></div>
+          <%= render :partial => '/baselines/version_chart_js', :locals => { maximum_chart_date: version.maximum_chart_date(@baseline), version_chart_data: version.data_for_chart(@baseline), version: version } %> 
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<script>
+  var dropdownMenu = $('#baseline_id');               //Dropdown element from html.
+  dropdownMenu.change(function() {                    //When selected.
+    window.location = '/redmine/baselines/' + $(this).val();  //Redirect to selected baseline.
+  });
+</script>
+
+
