@@ -1,4 +1,4 @@
-# redmine_evm
+# redmine_evm_custom
 
 オリジナルのredmine_evmをカスタマイズしています。
 Original:https://github.com/imaginary-cloud/redmine_evm V1.0.0 (4-Jul-2014)
