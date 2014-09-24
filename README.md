@@ -45,6 +45,9 @@ First make sure that the project planning is complete, then set up a baseline un
 #### Main screen
 ![evm sample screenshot](./doc/screenshot_overview.png "overview")
 
+#### New Baseline
+![evm sample screenshot](./doc/screenshot_newbaseline.png "new baseline")
+
 #### Baseline list
 ![evm sample screenshot](./doc/screenshot_setting.png "setting baseline list")
 
