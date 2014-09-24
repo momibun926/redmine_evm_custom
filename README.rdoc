@@ -6,6 +6,15 @@ Original:https://github.com/imaginary-cloud/redmine_evm V1.0.0 (4-Jul-2014)
 
 このプラグインはチケットの予定工数、完了日、進捗率、
 作業時間を使って、EVMを計測します。ベースラインも設定することができます。
+本家からの主な変更点は以下の通り
+
+1. 週単位でEVM値を算出していたのを日単位に変更
+2. チケットが親子関係にあるとき子のチケットだけでEVM値を算出
+3. グラフ表示をHighchartsへ変更
+4. グラフ表示エリアを拡大
+5. EVM値のBAC,EACをグラフ表示
+6. 主要EVM値(PV,EV,AC,SV,CV,SPI,CPI,BAC,EAC)をサマリーとしてTOPに表示
+6. サイドバーの廃止
 
 
 ==Installation
