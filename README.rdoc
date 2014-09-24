@@ -30,7 +30,7 @@ First make sure that the project planning is complete, then set up a baseline un
 
 ==Screenshot
 
-
+![screenshot](screenshot_overview.png)
 
 ==Keywords
 
