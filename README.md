@@ -25,14 +25,14 @@ Original:https://github.com/imaginary-cloud/redmine_evm V1.0.0 (4-Jul-2014)
 
 ## Installation
 
-### Use zip file
+#### Use zip file
 
 1. Download tarball 
 2. cd {redmine_root}/plugins/; mkdir redmine_evm 
 3. Extract files to {redmine_root}/plugins/redmine_evm/
 4. rake redmine:plugins:migrate NAME=redmine_evm RAILS_ENV=production
 
-### Use git clone
+#### Use git clone
 
     git clone git://github.com/momibun926/redmine_evm_custom {redmine_root}/plugins/redmine_evm
     
@@ -42,10 +42,10 @@ First make sure that the project planning is complete, then set up a baseline un
 
 ## Screenshot
 
-### Main screen
+#### Main screen
 ![evm sample screenshot](./doc/screenshot_overview.png "overview")
 
-### Baseline list
+#### Baseline list
 ![evm sample screenshot](./doc/screenshot_setting.png "setting baseline list")
 
 
