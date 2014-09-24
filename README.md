@@ -53,7 +53,7 @@ First make sure that the project planning is complete, then set up a baseline un
 
 EVM, CPI, SPI, Earned Value Management, Baseline, Forecast, Redmine, Plugin
 
-## Emvironment
+## Environment
 
 Test on
 * Redmine version                2.5.2.stable
