@@ -1,9 +1,9 @@
-# redmine_evm_custom
+## redmine_evm_custom
 
 オリジナルのredmine_evmをカスタマイズしています。
 Original:https://github.com/imaginary-cloud/redmine_evm V1.0.0 (4-Jul-2014)
 
-# About
+## About
 
 このプラグインはチケットの予定工数、完了日、進捗率、
 作業時間を使って、EVMを計測しています。ベースラインも設定することができます。
@@ -23,31 +23,37 @@ Original:https://github.com/imaginary-cloud/redmine_evm V1.0.0 (4-Jul-2014)
 7. EVM値の説明をToolTipで表示 
 8. サイドバーの廃止
 
-# Installation
+## Installation
+
+### Use zip file
 
 1. Download tarball 
 2. cd {redmine_root}/plugins/; mkdir redmine_evm 
 3. Extract files to {redmine_root}/plugins/redmine_evm/
 4. rake redmine:plugins:migrate NAME=redmine_evm RAILS_ENV=production
 
-# How to use
+### Use git clone
+
+    git clone git://github.com/momibun926/redmine_evm_custom {redmine_root}/plugins/redmine_evm
+    
+## How to use
   
 First make sure that the project planning is complete, then set up a baseline under the "Baselines" tab in the project settings.
 
-# Screenshot
+## Screenshot
 
-Main screen
+### Main screen
 ![evm sample screenshot](./doc/screenshot_overview.png "overview")
 
-Baseline Setting list
+### Baseline list
 ![evm sample screenshot](./doc/screenshot_setting.png "setting baseline list")
 
 
-# Keywords
+## Keywords
 
 EVM, CPI, SPI, Earned Value Management, Baseline, Forecast, Redmine, Plugin
 
-# Emvironment
+## Emvironment
 
 Test on
 * Redmine version                2.5.2.stable
@@ -55,7 +61,7 @@ Test on
 * Rails version                  3.2.19
 * Windows(Bitnami Installer)
 
-# License
+## License
 
 Copyright © 2014 ImaginaryCloud, imaginarycloud.com. This plugin is licensed under the MIT license.
 
