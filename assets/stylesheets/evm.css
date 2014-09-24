@@ -5,6 +5,22 @@
   color: gray; 
 }
 
+/*** select balseline and option ***/
+#baseline-select,
+#baseline-option
+{
+  float: left;
+  padding: 5px; 
+}
+#baseline-option
+{
+  padding-top: 8px;
+}
+h3
+{
+  clear: both;
+}
+
 /*** summary evm indicator ***/
 #evm-indicator-value-table
 {
@@ -22,10 +38,6 @@
 {
   background-color: #eee;
 }
-
-/*** Dropdown Box ***/
-#baseline_id{ border-radius: 0; }
-#baseline_id option{ color: #eee; }
 
 /*** Graph area ***/
 #evm-charts-wrapper
