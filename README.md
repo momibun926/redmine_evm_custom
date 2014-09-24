@@ -43,9 +43,11 @@ EVM, CPI, SPI, Earned Value Management, Baseline, Forecast, Redmine, Plugin
 
 # Emvironment
 
+Test on
 * Redmine version                2.5.2.stable
-* Ruby version                   1.9.2-p328 
-* Rails version                  3.2.17
+* Ruby version                   1.9.3-p231 
+* Rails version                  3.2.19
+* Windows(Bitnami Installer)
 
 # License
 
