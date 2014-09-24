@@ -1,42 +1,37 @@
 <% content_for :header_tags do %>
   <%= stylesheet_link_tag 'evm', :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag 'moment',            :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag 'flot',              :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag 'flottime',          :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag 'flotlabel',         :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag 'flottooltip',       :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag 'flotdashes',        :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag 'drawchart',         :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag 'drawindicators',    :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'drawchart',            :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'jquery-1.9.1.min.js',  :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag 'highcharts.js',        :plugin => 'redmine_evm' %>
   <%= javascript_include_tag '../../../javascripts/select_list_move', :plugin => 'redmine_evm' %>
-<% end %>
+ <% end %>
 
 <!--Title-->
 <h2><%=l(:title_evm_tab)%></h2>
 <% html_title('EVM Indicators') %>
-<p id="evm-subtitle"><%=l(:subtitle_evm_tab)%></p>
-
-<!-- Dropdown for baselines -->
+<!-- Choose baseline and option -->
 <%= form_tag baseline_path, method: :get, id: 'query_form' do %>
-  <fieldset id="filters" class="collapsible ">
-    <legend onclick="toggleFieldset(this);"><%= l(:label_baseline_plural) %></legend>
-    <div>
-      <!-- Dropdown for baselines -->
-      <%= collection_select :baseline, :id, @baselines, :id, :name %>
-      <!-- Forecast -->
-      <% unless @project.actual_cost(@baseline) == 0 %>
-      <%= check_box_tag 'forecast' , 'true', @forecast_is_enabled  %>
-      <%= label_tag l(:label_forecast) %>
-      <% end %>
-      <!-- Display Version Graph -->
-      <%= check_box_tag 'display_version' , 'true', @display_version_is_enabled %>
-      <%= label_tag l(:label_display_version) %>
-    </div>
-  </fieldset>
-  <p class="buttons">
+  <div>
+  <div id="baseline-select">
+    <!-- Dropdown for baselines -->
+    <%= l(:label_select_baseline) %>
+    <%= collection_select :baseline, :id, @baselines, :id, :name %>
+  </div>
+  <div id="baseline-option">
+    <!-- Option -->
+    <%= l(:label_option) %>
+    <!-- Forecast -->
+    <% unless @project.actual_cost(@baseline) == 0 %>
+    <%= check_box_tag 'forecast' , 'true', @forecast_is_enabled  %>
+    <%= label_tag l(:label_forecast) %>
+    <% end %>
+    <!-- Display Version Graph -->
+    <%= check_box_tag 'display_version' , 'true', @display_version_is_enabled %>
+    <%= label_tag l(:label_display_version) %>
+    <!-- Apply button -->
     <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
-    <!-- submit_query_form is from redmine application.js -->
-  </p>
+  </div>
+  </div>
 <% end %>
 
 <!--Indicator value-->
@@ -105,6 +100,7 @@
 <% end %>
 </br>
 </br>
+
 <!--Charts-->
 <h3><%= l(:subtitle_evm_graph)%></h3>
 <div id="evm-charts-wrapper">

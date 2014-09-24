@@ -1,8 +1,3 @@
-<% baseurl = Redmine::Utils.relative_url_root -%>
-<%= javascript_include_tag ("/plugin_assets/redmine_evm/javascripts/modules/jquery-1.8.3.min.js") %>
-<%= javascript_include_tag ("/plugin_assets/redmine_evm/javascripts/highcharts.js") %>
-<%= javascript_include_tag ("/plugin_assets/redmine_evm/javascripts/highcharts-more.js") %>
-<%= javascript_include_tag ("/plugin_assets/redmine_evm/javascripts/modules/exporting.js") %>
 <script>
   var nowDate = <%= Date.today.to_time.to_i * 1000 %>;
   var projectChartData = <%= raw project_chart_data.to_json %>;
