@@ -11,26 +11,26 @@
 <% html_title('EVM Indicators') %>
 <!-- Choose baseline and option -->
 <%= form_tag baseline_path, method: :get, id: 'query_form' do %>
-  <div>
-  <div id="baseline-select">
-    <!-- Dropdown for baselines -->
-    <%= l(:label_select_baseline) %>
-    <%= collection_select :baseline, :id, @baselines, :id, :name %>
-  </div>
-  <div id="baseline-option">
-    <!-- Option -->
-    <%= l(:label_option) %>
-    <!-- Forecast -->
-    <% unless @project.actual_cost(@baseline) == 0 %>
-    <%= check_box_tag 'forecast' , 'true', @forecast_is_enabled  %>
-    <%= label_tag l(:label_forecast) %>
-    <% end %>
-    <!-- Display Version Graph -->
-    <%= check_box_tag 'display_version' , 'true', @display_version_is_enabled %>
-    <%= label_tag l(:label_display_version) %>
-    <!-- Apply button -->
-    <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
-  </div>
+  <div id="baseline-sselect-area">
+    <div id="baseline-select">
+      <!-- Dropdown for baselines -->
+      <%= l(:label_select_baseline) %>
+      <%= collection_select :baseline, :id, @baselines, :id, :name %>
+    </div>
+    <div id="baseline-option">
+      <!-- Option -->
+      <%= l(:label_option) %>
+      <!-- Forecast -->
+      <% unless @project.actual_cost(@baseline) == 0 %>
+      <%= check_box_tag 'forecast' , 'true', @forecast_is_enabled  %>
+      <%= label_tag l(:label_forecast) %>
+      <% end %>
+      <!-- Display Version Graph -->
+      <%= check_box_tag 'display_version' , 'true', @display_version_is_enabled %>
+      <%= label_tag l(:label_display_version) %>
+      <!-- Apply button -->
+      <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
+    </div>
   </div>
 <% end %>
 
