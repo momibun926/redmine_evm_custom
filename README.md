@@ -14,7 +14,8 @@ Original:https://github.com/imaginary-cloud/redmine_evm V1.0.0 (4-Jul-2014)
 4. グラフ表示エリアを拡大
 5. EVM値のBAC,EACをグラフ表示
 6. 主要EVM値(PV,EV,AC,SV,CV,SPI,CPI,BAC,EAC)をサマリーとしてTOPに表示
-6. サイドバーの廃止
+7. EVM値の説明をToolTipで表示 
+8. サイドバーの廃止
 
 # Installation
 
