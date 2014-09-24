@@ -29,9 +29,14 @@ First make sure that the project planning is complete, then set up a baseline un
 
 # Screenshot
 
+Main screen
 ![evm sample screenshot](./doc/screenshot_overview.png "overview")
 
-==Keywords
+Baseline Setting list
+![evm sample screenshot](./doc/screenshot_setting.png "setting baseline list")
+
+
+# Keywords
 
 EVM, CPI, SPI, Earned Value Management, Baseline, Forecast, Redmine, Plugin
 
