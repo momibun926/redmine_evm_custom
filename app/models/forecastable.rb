@@ -2,17 +2,6 @@ require "date"
 
 module Forecastable
 
-  #Estimate at Completion (EAC$) Yaxis
-  #http://www.pmknowledgecenter.com/node/166
-  def estimate_at_completion_cost
-    project.actual_cost(self) + (self.budget_at_completion - project.earned_value(self)) / self.cost_performance_index
-  end
-
-  #Planned Duration (PD) in weeks
-  def planned_duration
-    planned_value_by_week.count - 1 
-  end
-
   #Earned Schedule (ES) from http://www.pmknowledgecenter.com/node/163
   def earned_schedule
     ev = project.earned_value(self)   #Current Earned Value
@@ -54,16 +43,22 @@ module Forecastable
 
   #Estimate at Completion Duration (EACt)
   #Method using Earned Schedule (ES) from http://www.pmknowledgecenter.com/dynamic_scheduling/control/earned-value-management-forecasting-time
-  def estimate_at_completion_duration
-    return Date.today + planned_duration - earned_schedule
+  def estimate_at_completion_date
+    return Date.today + (planned_value_by_week.count - 1 ) - earned_schedule
   end
-  
+
+  #Estimate at Completion (EAC$) Yaxis
+  #http://www.pmknowledgecenter.com/node/166
+  def estimate_at_completion_cost
+    project.actual_cost(self) + (self.budget_at_completion - project.earned_value(self)) / self.cost_performance_index
+  end
+
   def actual_cost_forecast_line
-    [[ Date.today, project.actual_cost(self) ], [ estimate_at_completion_duration, estimate_at_completion_cost ]] #The estimated line after actual cost
+    [[ Date.today, project.actual_cost(self) ], [ estimate_at_completion_date, estimate_at_completion_cost ]] #The estimated line after actual cost
   end
 
   def earned_value_forecast_line
-    [[ Date.today, project.earned_value(self) ], [ estimate_at_completion_duration, budget_at_completion]]
+    [[ Date.today, project.earned_value(self) ], [ estimate_at_completion_date, budget_at_completion]]
   end
 
   #End date for top lines. Detects if it is an old project, so it does not go beyond baseline due_date.
@@ -71,7 +66,7 @@ module Forecastable
     if(end_date < Date.today) #If it is an old project.
       end_date_for_top_line = [project.maximum_chart_date(self), self.end_date].max
     else
-      end_date_for_top_line = [project.maximum_chart_date(self), self.end_date, estimate_at_completion_duration].max
+      end_date_for_top_line = [project.maximum_chart_date(self), self.end_date, estimate_at_completion_date].max
     end
   end
 
@@ -87,24 +82,28 @@ module Forecastable
     eac_top_line = [[start_date, eac],[end_date_for_top_line, eac]]
   end
 
-  # % Completed
-  def completed_actual
-    project.actual_cost(self).to_f / estimate_at_completion_cost
-  end
-
   #Variance at Completion (VAC)
-  def variance_at_completion
+  def variance_at_completion_hours
     (estimate_at_completion_cost - budget_at_completion).round(2)
+  end
+  def variance_at_completion_days
+    ((estimate_at_completion_cost - budget_at_completion) / 8 ).round(1)
   end
 
   #Estimate at Completion (EAC)
-  def estimate_at_completion
+  def estimate_at_completion_hours
     estimate_at_completion_cost.round(2)
+  end
+  def estimate_at_completion_days
+    (estimate_at_completion_cost / 8 ).round(1)
   end
 
   #Estimate to Complete (ETC)
-  def estimate_to_complete
-    (estimate_at_completion - project.actual_cost(self).to_f).round(2)
+  def estimate_to_complete_hours
+    (estimate_at_completion_cost - project.actual_cost(self).to_f).round(2)
+  end
+  def estimate_to_complete_days
+    ((estimate_at_completion_cost - project.actual_cost(self).to_f) / 8 ).round(1)
   end
 
 end

@@ -91,24 +91,36 @@ class Baseline < ActiveRecord::Base
     Date.today
   end
 
+  #Budget at Completion (BAC)
+  def project_budget_at_completion_hours 
+    self.budget_at_completion.round(2)
+  end
+  def project_budget_at_completion_days
+    (self.budget_at_completion / 8).round(1)
+  end
+
   #Plan Value (PV)
-  def today_pv 
+  def today_pv_hours 
     self.planned_value.round(2)
+  end
+  def today_pv_days
+    (self.planned_value / 8 ).round(1)
   end
 
   #Earned Value (EV)
-  def today_ev 
+  def today_ev_hours
     project.earned_value(self).round(2)
+  end
+  def today_ev_days
+    (project.earned_value(self) / 8).round(1)
   end
 
   #Actual Cost (AC)
-  def today_ac
+  def today_ac_hours
     project.actual_cost(self).round(2)
   end
-
-  #Budget at Completion (BAC)
-  def project_budget_at_completion 
-    self.budget_at_completion.round(2)
+  def today_ac_days
+    (project.actual_cost(self) / 8).round(1)
   end
 
   #Schedule Performance Index (SPI)
@@ -122,23 +134,29 @@ class Baseline < ActiveRecord::Base
   end
 
   #Schedule Variance (SV)
-  def schedule_variance
+  def schedule_variance_hours
     (project.earned_value(self) - self.planned_value).round(2)
+  end
+  def schedule_variance_days
+    ((project.earned_value(self) - self.planned_value) / 8 ).round(1)
   end
 
   #Cost Variance (CV)
-  def cost_variance
+  def cost_variance_hours
     (project.earned_value(self) - project.actual_cost(self)).round(2)
+  end
+  def cost_variance_days
+    ((project.earned_value(self) - project.actual_cost(self)) / 8).round(1)
   end
 
   #Difference planed end date, forecast earned end date.
   def difference_bac_eac_days
-    (self.estimate_at_completion_duration - end_date).to_i
+    (self.estimate_at_completion_date - end_date).to_i
   end
 
   #Completed earned value
   def completed_ev
-    ((today_ev / project_budget_at_completion) * 100).round
+    ((today_ev_hours / project_budget_at_completion_hours) * 100).round
   end
 
   private
