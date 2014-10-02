@@ -29,7 +29,7 @@ ja:
   label_evm_legend_predicted: 予測完了出来高
   # Tooltip
   label_option: 表示オプション
-  label_forecast: 予測値を表示する
+  label_forecast: グラフに予測値を表示する
   label_display_version: バージョンのグラフも表示する
   explanation_bac: 完成時総予算。プロジェクトの完了時点におけるPV
   explanation_pv: 現時点での計画工数
