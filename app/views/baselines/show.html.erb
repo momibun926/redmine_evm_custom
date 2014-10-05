@@ -46,7 +46,7 @@
       <th colspan="5"><%=l(:indicator_table_header_today)%></th>
       <th colspan="2"><%=l(:indicator_table_header_difference)%></th>
       <th colspan="2"><%=l(:indicator_table_header_performance)%></th>
-      <th colspan="4"><%=l(:indicator_table_header_forecast)%></th>
+      <th colspan="5"><%=l(:indicator_table_header_forecast)%></th>
     </tr>
     <tr>
       <th><a href="#" class="tooltip">BAC<span><%=l(:explanation_bac)%></span></a></th>
@@ -62,6 +62,7 @@
       <th><a href="#" class="tooltip">ETC<span><%=l(:explanation_etc)%></span></a></th>
       <th><a href="#" class="tooltip">VAC<span><%=l(:explanation_vac)%></span></a></th>
       <th><a href="#" class="tooltip">Difference end date<span><%=l(:explanation_difference_end_date)%></span></a></th>
+      <th><a href="#" class="tooltip">TCPI<span><%=l(:explanation_to_Complete_performance_index)%></span></a></th>
     </tr>
     <tr>
       <td rowspan="2"><%= @baseline.today_date%></td>
@@ -78,6 +79,7 @@
       <td><%= @baseline.estimate_to_complete_hours %> </td>
       <td><%= @baseline.variance_at_completion_hours %></td>
       <td rowspan="2"><%= @baseline.difference_bac_eac_days %> Days</td>
+      <td rowspan="2"><%= @baseline.to_Complete_performance_index %></td>
     </tr>
     <tr>
       <td><%= @baseline.project_budget_at_completion_days %></td>

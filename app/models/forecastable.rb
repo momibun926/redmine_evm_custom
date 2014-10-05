@@ -106,4 +106,10 @@ module Forecastable
     ((estimate_at_completion_cost - project.actual_cost(self).to_f) / 8 ).round(1)
   end
 
+  #To Complete Performance Index(TCPI)
+  # (BAC - EV) / (BAC - AC)
+  def to_Complete_performance_index
+    ((budget_at_completion - project.earned_value(self).to_f) / (budget_at_completion - project.actual_cost(self).to_f)).round(2)
+  end
+
 end
