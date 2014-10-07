@@ -133,6 +133,11 @@ class Baseline < ActiveRecord::Base
     project.actual_cost(self) != 0 ? (project.earned_value(self).to_f / project.actual_cost(self)).round(2) : 0
   end
 
+  #Critical Ratio (CR)
+  def critical_ratio 
+    (schedule_performance_index *  cost_performance_index).round(2)
+  end
+
   #Schedule Variance (SV)
   def schedule_variance_hours
     (project.earned_value(self) - self.planned_value).round(2)

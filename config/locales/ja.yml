@@ -17,39 +17,35 @@ ja:
   warning_log_time_with_no_issue: チケットに実績値が入力されていないので正確なコストが表示できません
   warning_log_time_before_start_date: チケットの開始日以前に実績値が入力されているため正確なコストが表示できません
   # Main form
-  title_evm_tab: EVM指標
-  subtitle_evm_tab: "このプロジェクトの進捗をEVM(PV,EV,AC)で管理します"
-  subtitle_evm_summary: 進捗サマリー
+  title_evm_tab: EVM
+  subtitle_evm_summary: サマリー
   subtitle_evm_graph: EVMグラフ
-  # Legend
-  label_evm_legend_pv: PV (計画値)
-  label_evm_legend_ac: AC (作業実績)
-  label_evm_legend_ev: EV (完了出来高)
-  label_evm_legend_actual: 予測作業実績
-  label_evm_legend_predicted: 予測完了出来高
-  # Tooltip
+  # Option
   label_option: 表示オプション
   label_forecast: グラフに予測値を表示する
   label_display_version: バージョンのグラフも表示する
-  explanation_bac: 完成時総予算。プロジェクトの完了時点におけるPV
-  explanation_pv: 現時点での計画工数
-  explanation_ev: 現時点での完了工数
-  explanation_ac: 現時点での実績工数
-  explanation_sv: 現時点でのスケジュール差異(マイナス値は遅れ)
-  explanation_cv: 現時点でのコスト差異(マイナス値はコスト超過)
-  explanation_spi: スケジュール効率指数 (1以上であれば良好)
-  explanation_cpi: コスト効率指数 (1以上であれば良好)
-  explanation_complete: ベースラインの総PVに対する完了率
-  explanation_eac: 完成時総コスト見積り (EAC：Estimate At Completion）
-  explanation_etc: 残作業のコスト見積り (ETC：Estimate To Complete）
-  explanation_vac: 完了時コスト差異 (VAC：Variance At Completion）
+  # Tooltip
+  explanation_bac: 完成時総予算。　プロジェクトのチケットの総見積もり工数
+  explanation_pv: チケットの見積もり工数。作業に対する予算
+  explanation_ev: 出来高。チケットが完了となった時に見積もり工数を計上
+  explanation_ac: 実コスト。作業時間の記録から集計
+  explanation_sv: スケジュール差異（PV-EV）
+  explanation_cv: コスト差異（APV-AC)
+  explanation_spi: スケジュール効率指数（SPI：Schedule Performance Index）
+  explanation_cpi: コスト効率指数（CPI：Cost Performance Index）
+  explanation_cr: コスト効率指数 (1以上であれば良好)
+  explanation_complete: BAC完了率
+  explanation_eac: 完成時総コスト見積り（EAC：Estimate At Completion）
+  explanation_etc: 残作業のコスト見積り（ETC：Estimate To Complete）
+  explanation_vac: 完了時コスト差異 （VAC：Variance At Completion）
   explanation_difference_end_date: 完了予想日と計画完了日との差(日数)
+  explanation_tcpi: 残作業効率指数（TCPI：To-Complete-Performance-Index）
   # Indicator table header
   indicator_table_header_date: 日付
   indicator_table_header_today: 今日時点の指標
   indicator_table_header_difference: 差異
-  indicator_table_header_performance: 効率指数
-  indicator_table_header_forecast: 予測値
+  indicator_table_header_performance: 効率
+  indicator_table_header_forecast: 予測
   # Indicator table legend
   explanation_upper_row: 上段の値は時間
   explanation_lower_row: 下段の値は人日

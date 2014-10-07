@@ -100,10 +100,10 @@ module Forecastable
 
   #Estimate to Complete (ETC)
   def estimate_to_complete_hours
-    (estimate_at_completion_cost - project.actual_cost(self).to_f).round(2)
+    ((estimate_at_completion_cost - project.actual_cost(self).to_f) / critical_ratio).round(2)
   end
   def estimate_to_complete_days
-    ((estimate_at_completion_cost - project.actual_cost(self).to_f) / 8 ).round(1)
+    ((estimate_at_completion_cost - project.actual_cost(self).to_f) / critical_ratio / 8 ).round(1)
   end
 
   #To Complete Performance Index(TCPI)
