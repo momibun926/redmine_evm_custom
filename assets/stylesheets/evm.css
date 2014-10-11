@@ -4,26 +4,23 @@
 { 
   color: gray; 
 }
+#main 
+{
+  width: 100%;
+  overflow: visible;
+}
 
 /*** select balseline and option ***/
-#baseline-select,
-#baseline-option
+#baseline-select-area
 {
-  float: left;
+  width: auto;
   padding: 5px; 
-}
-#baseline-option
-{
-  padding-top: 8px;
-}
-h3
-{
-  clear: both;
 }
 
 /*** summary evm indicator ***/
 #evm-indicator-value-table
 {
+  width: auto;
   border-collapse: collapse;
 }
 #evm-indicator-value-table th,
@@ -42,44 +39,11 @@ h3
 /*** Graph area ***/
 #evm-charts-wrapper
 {
-  width: 90%;
+  width: auto;
 }
 #evm-graph-lines
 {
   height: 400px;
-}
-
-/*** Legend ***/
-#evm-legend
-{
-  margin-left: auto;
-  margin-right: auto;
-  color: #333;
-}
-#evm-legend-pv
-{
-  padding: 5px;
-  border-top: 3px solid #0f75bc; 
-}
-#evm-legend-ev
-{
-  padding: 5px;
-  border-top: 3px solid #8cc63f; 
-}
-#evm-legend-ac
-{
-  padding: 5px;
-  border-top: 3px solid #fcb040; 
-}
-#evm-legend-actual
-{
-  padding: 5px;
-  border-top: 3px dotted #fcb040; 
-}
-#evm-legend-predicted
-{
-  padding: 5px;
-  border-top: 3px dotted #8cc63f; 
 }
 
 /*** Tooltip - Chart ***/
