@@ -1,7 +1,7 @@
 <% html_title('EVM Indicators') %>
 <% content_for :header_tags do %>
-  <%= stylesheet_link_tag 'evm', :plugin => 'redmine_evm' %>
-  <%= stylesheet_link_tag 'simptip', :plugin => 'redmine_evm' %>
+  <%= stylesheet_link_tag 'evm',                     :plugin => 'redmine_evm' %>
+  <%= stylesheet_link_tag 'simptip',                 :plugin => 'redmine_evm' %>
   <%= javascript_include_tag 'drawchart',            :plugin => 'redmine_evm' %>
   <%= javascript_include_tag 'jquery-1.9.1.min.js',  :plugin => 'redmine_evm' %>
   <%= javascript_include_tag 'highcharts.js',        :plugin => 'redmine_evm' %>
@@ -12,7 +12,7 @@
 <h2><%=l(:title_evm_tab)%></h2>
 <!-- Choose baseline and option -->
 <%= form_tag baseline_path, method: :get, id: 'query_form' do %>
-  <div id="baseline-sselect-area">
+  <div id="baseline-select-area">
     <!-- Dropdown for baselines -->
     <p>
     <%= l(:label_select_baseline) %>
@@ -34,69 +34,14 @@
         <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
       </div>
     </fieldset>
-    </br>
   </div>
 <% end %>
+</br>
 
 <!--Indicator value-->
 <h3><%= l(:subtitle_evm_summary)%></h3>
 <% if @project.earned_value(@baseline) != 0 %>
-  <table id="evm-indicator-value-table">
-    <tr>
-      <th rowspan="2"><%=l(:indicator_table_header_date)%></th>
-      <th colspan="5"><%=l(:indicator_table_header_today)%></th>
-      <th colspan="2"><%=l(:indicator_table_header_difference)%></th>
-      <th colspan="3"><%=l(:indicator_table_header_performance)%></th>
-      <th colspan="5"><%=l(:indicator_table_header_forecast)%></th>
-    </tr>
-    <tr>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_bac)%>>BAC</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_complete)%>>Complete EV</span></a></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_pv)%>>PV</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_ev)%>>EV</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_ac)%>>AC</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_sv)%>>SV</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_cv)%>>CV</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_spi)%>>SPI</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_cpi)%>>CPI</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_cr)%>>CR</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_eac)%>>EAC</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_etc)%>>ETC</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_vac)%>>VAC</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_difference_end_date)%>>Delay</span></th>
-      <th><span class="simptip-position-right" data-tooltip=<%=l(:explanation_tcpi)%>>TCPI</span></th>
-    </tr>
-    <tr>
-      <td rowspan="2"><%= @baseline.today_date%></td>
-      <td><%= @baseline.project_budget_at_completion_hours %></td>
-      <td rowspan="2"><%= @baseline.completed_ev %>%</td>
-      <td><%= @baseline.today_pv_hours %> </td>
-      <td><%= @baseline.today_ev_hours %></td>
-      <td><%= @baseline.today_ac_hours %></td>
-      <td><%= @baseline.schedule_variance_hours %></td>
-      <td><%= @baseline.cost_variance_hours %></td>
-      <td rowspan="2"><%= @baseline.schedule_performance_index %> </td>
-      <td rowspan="2"><%= @baseline.cost_performance_index %></td>
-      <td rowspan="2"><%= @baseline.critical_ratio %></td>
-      <td><%= @baseline.estimate_at_completion_hours %> </td>
-      <td><%= @baseline.estimate_to_complete_hours %> </td>
-      <td><%= @baseline.variance_at_completion_hours %></td>
-      <td rowspan="2"><%= @baseline.difference_bac_eac_days %> Days</td>
-      <td rowspan="2"><%= @baseline.to_Complete_performance_index %></td>
-    </tr>
-    <tr>
-      <td><%= @baseline.project_budget_at_completion_days %></td>
-      <td><%= @baseline.today_pv_days %> </td>
-      <td><%= @baseline.today_ev_days %></td>
-      <td><%= @baseline.today_ac_days %></td>
-      <td><%= @baseline.schedule_variance_days %></td>
-      <td><%= @baseline.cost_variance_days %></td>
-      <td><%= @baseline.estimate_at_completion_days %> </td>
-      <td><%= @baseline.estimate_to_complete_days %> </td>
-      <td><%= @baseline.variance_at_completion_days %></td>
-    </tr>
-  </table>
-  <%= l(:explanation_upper_row)%> <%= l(:explanation_lower_row)%>
+  <%= render :partial => '/baselines/evm_measure' %>
 <% end %>
 </br>
 </br>
