@@ -38,7 +38,7 @@ class ForecastableTest < ActiveSupport::TestCase
   end
 
   def test_estimate_at_completion_duration
-    assert_equal 74.875, @baseline.estimate_at_completion_duration
+    assert_equal 74.875, @baseline.estimate_at_completion_date
   end
 
   def test_actual_forecast_line

@@ -1,23 +1,20 @@
-
-/*** Title ***/
-#evm-subtitle
+/*** evm charts ***/
+#evm-charts-wrapper
 { 
-  color: gray; 
+	margin: auto; 
 }
-#main 
-{
-  width: 100%;
-  overflow: visible;
+div[class*="evm-chart"] 
+{ 
+  margin: auto;
+  height: 450px;
+  padding: 20px 0 20px 0; 
 }
-
-/*** select balseline and option ***/
-#baseline-select-area
-{
-  width: auto;
-  padding: 5px; 
-}
-
 /*** summary evm indicator ***/
+#evm-suummary-wrapper
+{ 
+	margin: auto;
+	padding: 0 0 20px 0; 
+}
 #evm-indicator-value-table
 {
   width: auto;
@@ -34,53 +31,4 @@
 #evm-indicator-value-table th
 {
   background-color: #eee;
-}
-
-/*** Graph area ***/
-#evm-charts-wrapper
-{
-  width: auto;
-}
-#evm-graph-lines
-{
-  height: 400px;
-}
-
-/*** Tooltip - Chart ***/
-#flot_chart_tooltip
-{
-  position: absolute;
-  display: none;
-  border: 1px solid #ddd;
-  padding: 2px;
-  background-color: #eee;
-  opacity: 0.80;
-}
-.markers
-{
-  padding: 2px;
-  position: absolute;
-  background-color: rgba(255, 255, 255, 0.7);
-  color: #d0d0d0;
-  font-size: smaller;
-}
-/*** Tooltip - EVM value ***/
-a.tooltip:hover {
-     background: #ffffff;     /* IE6以下で必要 */
-     text-decoration: none;
-}
-a.tooltip span {
-     display: none;
-     padding: 8px;
-     font-size: 10px;
-     margin-left: 8px;
-     line-height: 1.6;
-}
-a.tooltip:hover span{
-     display: inline;
-     position: absolute;
-     background-color: #FFF7EE;
-     border: 1px solid #cccccc;
-     color: #000000;
-     width: 200px;     /* a.tooltip spanに指定すると、IE6以下でspanの領域でマウスが反応してしまう */
 }

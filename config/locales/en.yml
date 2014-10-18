@@ -5,15 +5,25 @@ en:
   label_baseline_plural: Baselines
   label_baseline_version: Baseline Version
   label_baseline_set: Set Baseline
+
   label_due_date: Due Date
   label_created_date: Created Date
+
   label_current_baseline: Current
   label_old_baseline: Old
+
   label_select_baseline: Select Baseline
+
+  title_evm_tab: EVM Indicators
+  subtitle_evm_tab: Here you can see how your project is progressing relative to the plan seted
+  subtitle_evm_summary: Summary
+  subtitle_evm_forecast: Forecast
+
   label_update_estimated_hours: Assume the spent time as planned hours in closed tasks
-  # Message
+
   error_no_baseline: Please set a baseline before proceeding
   error_no_issues: Please set a issue before proceeding
+
   warning_log_time_with_no_issue: Actual cost is not accurate. There are log times with no issue associated.
   warning_log_time_before_start_date: Actual cost is not accurate. There are log times before the project start date.
   # Main form

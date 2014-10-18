@@ -1,19 +1,29 @@
-# japanease translation
+﻿# japanease translation
 ja:
   # Setting Tab
   label_baseline: ベースライン
   label_baseline_plural: ベースライン
   label_baseline_version: ベースライン バージョン
   label_baseline_set: ベースラインを設定
+
   label_due_date: 期日
   label_created_date: 作成日
+
   label_current_baseline: 現在
   label_old_baseline: 過去
+
   label_select_baseline: ベースラインを選択
+
+  title_evm_tab: EVM指標
+  subtitle_evm_tab: このプロジェクトの進捗をEVMでみる事が出来ます
+  subtitle_evm_summary: 概要
+  subtitle_evm_forecast: 予測
+
   label_update_estimated_hours: 終了したタスクは実績時間を見積もり時間とする
   # Message
   error_no_baseline: ベースラインを設定してください
   error_no_issues: チケットが作成されないとベースラインの設定は出来ません
+
   warning_log_time_with_no_issue: チケットに実績値が入力されていないので正確なコストが表示できません
   warning_log_time_before_start_date: チケットの開始日以前に実績値が入力されているため正確なコストが表示できません
   # Main form
@@ -51,3 +61,4 @@ ja:
   explanation_lower_row: 下段の値は人日
 
 
+  label_not_avaliable: 利用不可

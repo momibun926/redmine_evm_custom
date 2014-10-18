@@ -68,7 +68,7 @@ module RedmineEvm
         earned_value_by_week = Hash.new { |h, k| h[k] = 0 }
         baselines.find(baseline_id).update_hours ? update_hours = true : update_hours = false
         issues.each do |issue|
-          next if issue.baseline_issues.find_by_baseline_id(baseline_id).try(:exclude)
+          next if issue.baseline_issues.find_by_baseline_id(baseline_id).try(:exclude) || !issue.leaf?
           issue.days.each do |day|
             earned_value_by_week[day] += issue.hours_per_day(update_hours, baseline_id) * issue.done_ratio/100.0 
           end
@@ -80,7 +80,7 @@ module RedmineEvm
       def earned_value baseline_id
         sum_earned_value = 0
         issues.each do |issue|
-          next if issue.baseline_issues.where(original_issue_id: issue.id, baseline_id: baseline_id).first.try(:exclude)
+          next if issue.baseline_issues.where(original_issue_id: issue.id, baseline_id: baseline_id).first.try(:exclude) || !issue.leaf?
           if baselines.find(baseline_id).update_hours
             if issue.closed?
               next if issue.spent_hours == 0

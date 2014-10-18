@@ -32,9 +32,8 @@ class Baseline < ActiveRecord::Base
   def create_issues issues, update_estimated_hours
     unless issues.nil?
       issues.each do |issue|
-        next if !issue.leaf?
         update_estimated_hours == "1" ? update_hours = true : update_hours = false
-        baseline_issue = BaselineIssue.new original_issue_id: issue.id, done_ratio: issue.done_ratio, status: issue.status.name, due_date: issue.due_date, start_date: issue.start_date, exclude: false, update_hours: update_hours, estimated_hours: issue.estimated_hours, spent_hours: issue.spent_hours, closed_on: issue.closed_on, is_closed: issue.closed?
+        baseline_issue = BaselineIssue.new original_issue_id: issue.id, done_ratio: issue.done_ratio, status: issue.status.name, due_date: issue.due_date, start_date: issue.start_date, exclude: false, update_hours: update_hours, estimated_hours: issue.estimated_hours, spent_hours: issue.spent_hours, closed_on: issue.closed_on, is_closed: issue.closed?, is_leaf: issue.leaf?
 
         baseline_version = self.baseline_versions.find_by_original_version_id(issue.fixed_version_id)
         unless baseline_version.nil?

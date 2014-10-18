@@ -1,5 +1,3 @@
-require "date"
-
 module Forecastable
 
   #Earned Schedule (ES) from http://www.pmknowledgecenter.com/node/163
@@ -46,19 +44,18 @@ module Forecastable
   def estimate_at_completion_date
     return Date.today + (planned_value_by_week.count - 1 ) - earned_schedule
   end
-
   #Estimate at Completion (EAC$) Yaxis
   #http://www.pmknowledgecenter.com/node/166
   def estimate_at_completion_cost
     project.actual_cost(self) + (self.budget_at_completion - project.earned_value(self)) / self.cost_performance_index
   end
-
+  
   def actual_cost_forecast_line
-    [[ Date.today, project.actual_cost(self) ], [ estimate_at_completion_date, estimate_at_completion_cost ]] #The estimated line after actual cost
+    [[ Time.now, project.actual_cost(self) ], [ estimate_at_completion_date, estimate_at_completion_cost ]] #The estimated line after actual cost
   end
 
   def earned_value_forecast_line
-    [[ Date.today, project.earned_value(self) ], [ estimate_at_completion_date, budget_at_completion]]
+    [[ Time.now, project.earned_value(self) ], [ estimate_at_completion_date, budget_at_completion]]
   end
 
   #End date for top lines. Detects if it is an old project, so it does not go beyond baseline due_date.

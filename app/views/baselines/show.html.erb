@@ -1,78 +1,70 @@
 <% html_title('EVM Indicators') %>
 <% content_for :header_tags do %>
   <%= stylesheet_link_tag 'evm',                     :plugin => 'redmine_evm' %>
-  <%= stylesheet_link_tag 'simptip',                 :plugin => 'redmine_evm' %>
   <%= javascript_include_tag 'drawchart',            :plugin => 'redmine_evm' %>
   <%= javascript_include_tag 'jquery.1.9.1.min.js',  :plugin => 'redmine_evm' %>
   <%= javascript_include_tag 'highcharts.js',        :plugin => 'redmine_evm' %>
   <%= javascript_include_tag '../../../javascripts/select_list_move', :plugin => 'redmine_evm' %>
- <% end %>
-
-<!--Title-->
-<h2><%=l(:title_evm_tab)%></h2>
-<!-- Choose baseline and option -->
-<%= form_tag baseline_path, method: :get, id: 'query_form' do %>
-  <div id="baseline-select-area">
-    <!-- Dropdown for baselines -->
-    <p>
-    <%= l(:label_select_baseline) %>
-    <%= collection_select :baseline, :id, @baselines, :id, :name %>
-    </p>
-    <!-- Option -->
-    <fieldset id="filters" class="collapsible collapsed">
-      <legend onclick="toggleFieldset(this);"><%= l(:label_options) %></legend>
-      <div style="display: none;">
-        <!-- Forecast -->
-        <% unless @project.actual_cost(@baseline) == 0 %>
-        <%= check_box_tag 'forecast' , 'true', @forecast_is_enabled  %>
-        <%= label_tag l(:label_forecast) %>
-        <% end %>
-        <!-- Display Version Graph -->
-        <%= check_box_tag 'display_version' , 'true', @display_version_is_enabled %>
-        <%= label_tag l(:label_display_version) %>
-        <!-- Apply button -->
-        <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
-      </div>
-    </fieldset>
-  </div>
 <% end %>
-</br>
-
+<!--Title-->
+<h2 id="evm-title"><%=l(:title_evm_tab)%></h2>
+<p id="evm-subtitle"><%=l(:subtitle_evm_tab)%></p>
+<!-- Baseline & Option -->  
+<%= form_tag baseline_path, method: :get, id: 'query_form' do %>
+  <!-- Dropdown for baselines -->  
+  <fieldset id="filters" class="collapsible ">
+    <legend onclick="toggleFieldset(this);"><%= l(:label_baseline_plural) %></legend>
+    <div>
+      <%= collection_select :baseline, :id, @baselines, :id, :name %>
+    </div>
+  </fieldset>
+  <!-- Option -->  
+  <fieldset id="filters" class="collapsible collapsed">
+    <legend onclick="toggleFieldset(this);"><%= l(:label_options) %></legend>
+    <div style="display: none;">
+      <% unless @project.actual_cost(@baseline) == 0 %>
+      <%= check_box_tag 'forecast', 'true', @forecast_is_enabled  %>
+      <%= label_tag l(:label_forecast) %>
+      <% end %>
+      <!-- Display Version Graph -->
+      <%= check_box_tag 'display_version' , 'true', @display_version_is_enabled %>
+      <%= label_tag l(:label_display_version) %>
+      <!-- Apply button -->
+      <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
+    </div>
+  </fieldset>
+<% end %>
 <!--Indicator value-->
 <h3><%= l(:subtitle_evm_summary)%></h3>
+<div id="evm-suummary-wrapper">
 <% if @project.earned_value(@baseline) != 0 %>
   <%= render :partial => '/baselines/evm_measure' %>
 <% end %>
-</br>
-</br>
-
+</div>
 <!--Charts-->
 <h3><%= l(:subtitle_evm_graph)%></h3>
 <div id="evm-charts-wrapper">
   <!-- Main Chart -->
-  <div id="evm-main-chart">
-    <h3 class="version"><%= @project.name %></h3>
-    <div id='evm-graph-lines'></div>
-    <%= render :partial => '/baselines/chart_js', :locals => { maximum_chart_date: @project.maximum_chart_date(@baseline), project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled) } %>
-  </div>
-  </br>
+  <h3 class="version"> <%= @project.name %></h3>
+  <div id='evm-graph-lines' class='evm-chart'></div>
+  <%= render :partial => '/baselines/chart_js', :locals => { maximum_chart_date: @project.maximum_chart_date(@baseline), project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled) } %>
   <!-- Versions Charts -->
   <% if @display_version_is_enabled %>
-    <div id="evm-versions-charts">
-      <% @project.versions.each do |version| %>
-        <% unless version.is_excluded(@baseline) %>
-          <h3 class="version"> <%= version.name %></h3>
-          <div id='evm-graph-lines-version-<%= version.id %>' style="height:300px;"></div>
-          <%= render :partial => '/baselines/version_chart_js', :locals => { maximum_chart_date: version.maximum_chart_date(@baseline), version_chart_data: version.data_for_chart(@baseline), version: version } %> 
-        <% end %>
+    <% @project.versions.each do |version| %>
+      <% unless version.is_excluded(@baseline) %>
+        <h3 class="version"> <%= version.name %></h3>
+        <div id='evm-graph-lines-version-<%= version.id %>' class='evm-chart-<%= version.id %>'></div>
+        <%= render :partial => '/baselines/version_chart_js', :locals => { maximum_chart_date: version.maximum_chart_date(@baseline), version_chart_data: version.data_for_chart(@baseline), version: version } %> 
       <% end %>
-    </div>
+    <% end %>
   <% end %>
 </div>
-
+<!-- change dropdown -->
 <script>
   var dropdownMenu = $('#baseline_id');               //Dropdown element from html.
   dropdownMenu.change(function() {                    //When selected.
     window.location = '/redmine/baselines/' + $(this).val();  //Redirect to selected baseline.
   });
 </script>
+
+
