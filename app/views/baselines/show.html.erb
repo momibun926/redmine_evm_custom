@@ -59,6 +59,10 @@
     <% end %>
   <% end %>
 </div>
+<!--sidebar-->
+<% content_for :sidebar do %>
+  <%= render :partial => '/baselines/evm_explanation' %> 
+<% end %>
 <!-- change dropdown -->
 <script>
   var dropdownMenu = $('#baseline_id');               //Dropdown element from html.
@@ -66,5 +70,3 @@
     window.location = '/redmine/baselines/' + $(this).val();  //Redirect to selected baseline.
   });
 </script>
-
-

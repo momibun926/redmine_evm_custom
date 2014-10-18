@@ -35,6 +35,11 @@ ja:
   label_forecast: グラフに予測値を表示する
   label_display_version: バージョンのグラフも表示する
   # Tooltip
+  explanation_basis: 基本
+  explanation_difference: 差異
+  explanation_performance: パフォーマンス
+  explanation_forecast: 予測値
+
   explanation_bac: 完成時総予算。　プロジェクトのチケットの総見積もり工数
   explanation_pv: チケットの見積もり工数。作業に対する予算
   explanation_ev: 出来高。チケットが完了となった時に見積もり工数を計上

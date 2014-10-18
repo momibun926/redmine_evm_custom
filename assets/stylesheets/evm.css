@@ -32,3 +32,11 @@ div[class*="evm-chart"]
 {
   background-color: #eee;
 }
+
+/*** sidebar ***/
+div[class*="evm-explanation"] 
+{
+  width: 200px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
