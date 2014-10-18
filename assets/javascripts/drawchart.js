@@ -111,7 +111,7 @@ function drawChart(dataToChart, placeholder, nowdate){
       };
       var lg1 = new Highcharts.Chart(chartOptions);
 }
-function drawChartPerformance(dataToChart, placeholder, nowdate){ 
+function drawChartPerformance(dataToChart, placeholder){ 
     var data = dataToChart;
     var chartOptions = {
             credits:{

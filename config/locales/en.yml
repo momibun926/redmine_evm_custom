@@ -20,7 +20,7 @@ en:
   subtitle_evm_forecast: Forecast
 
   label_update_estimated_hours: Assume the spent time as planned hours in closed tasks
-
+  # Message
   error_no_baseline: Please set a baseline before proceeding
   error_no_issues: Please set a issue before proceeding
 
@@ -28,18 +28,20 @@ en:
   warning_log_time_before_start_date: Actual cost is not accurate. There are log times before the project start date.
   # Main form
   title_evm_tab: EVM Indicators
-  subtitle_evm_tab: Here you can see how your project is progressing relative to the plan seted
   subtitle_evm_summary: EVM　Value
   subtitle_evm_graph: EVM Charts
-  # Legend
-  label_evm_legend_pv: Planned Value (PV)
-  label_evm_legend_ac: Actual Cost (AC)
-  label_evm_legend_ev: Earned Value (EV)
-  label_evm_legend_actual: Actual Values
-  label_evm_legend_predicted: Predicted values
-  # Tooltip
-  label_forecast: display Forecast
-  label_display_version: display version graph
+  subtitle_evm_graph_performance: Performance Charts
+  # Option
+  label_option: Option
+  label_forecast: Forecast
+  label_display_version: View version graph
+  label_display_performance: View performance graph
+  # Tooltip  
+  explanation_basis: Basic
+  explanation_difference: Difference
+  explanation_performance: Performance
+  explanation_forecast: Forecast
+
   explanation_bac: Budget At Completion (BAC) is the total budget allocated to the project.
   explanation_pv: Planned Value (PV) is the total cost of the work scheduled/planned as of a reporting date.
   explanation_ev: Earned Value (EV) is the total cost of the work completed/performed as of a reporting date.
@@ -48,11 +50,13 @@ en:
   explanation_cv: Cost Variance (CV) indicates how much over or under budget the project is.
   explanation_spi: Schedule Performance Indicator is an index showing the efficiency of the time utilized on the project. 
   explanation_cpi: Cost Performance Indicator is an index showing the efficiency of the utilization of the resources on the project. 
+  explanation_cr: Critical Ratio.This indicator combines both CPI and SPI to represent the project status. This indicator takes into account cost and schedule trade-offs.
   explanation_complete: Completed Planned
   explanation_eac: Estimate At Completion (EAC) is the estimated cost of the project at the end of the project.(difference value)
   explanation_etc: Estimate To Complete (ETC) is the estimated cost required to complete the remainder of the project.
   explanation_vac: Variance At completion (VAC) is the variance on the total budget at the end of the project.
   explanation_difference_end_date: Difference planed end date and Estimate To Complete date.
+  explanation_tcpi: The formula mentioned above gives the efficiency at which the project team should be utilized for the remainder of the project.
   # Indicator table header
   indicator_table_header_date: DATE
   indicator_table_header_today: Today's Value
