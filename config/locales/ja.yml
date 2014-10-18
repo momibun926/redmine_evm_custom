@@ -40,21 +40,21 @@ ja:
   explanation_performance: パフォーマンス
   explanation_forecast: 予測値
 
-  explanation_bac: 完成時総予算。　プロジェクトのチケットの総見積もり工数
+  explanation_bac: 完成時総予算。プロジェクトのチケットの総見積もり工数
   explanation_pv: チケットの見積もり工数。作業に対する予算
   explanation_ev: 出来高。チケットが完了となった時に見積もり工数を計上
   explanation_ac: 実コスト。作業時間の記録から集計
   explanation_sv: スケジュール差異（PV-EV）
   explanation_cv: コスト差異（APV-AC)
-  explanation_spi: スケジュール効率指数（SPI：Schedule Performance Index）
-  explanation_cpi: コスト効率指数（CPI：Cost Performance Index）
-  explanation_cr: コスト効率指数 (1以上であれば良好)
+  explanation_spi: スケジュール効率指数(EV÷PV)
+  explanation_cpi: コスト効率指数(EV÷AC)
+  explanation_cr: コスト効率指数(1以上であれば良好)
   explanation_complete: BAC完了率
-  explanation_eac: 完成時総コスト見積り（EAC：Estimate At Completion）
-  explanation_etc: 残作業のコスト見積り（ETC：Estimate To Complete）
-  explanation_vac: 完了時コスト差異 （VAC：Variance At Completion）
+  explanation_eac: 完成時総コスト見積り(AC＋ETC)
+  explanation_etc: 残作業のコスト見積り((BAC－EV)÷CPI)
+  explanation_vac: 完了時コスト差異(BAC－EAC)
   explanation_difference_end_date: 完了予想日と計画完了日との差(日数)
-  explanation_tcpi: 残作業効率指数（TCPI：To-Complete-Performance-Index）
+  explanation_tcpi: 残作業効率指数((BAC-EV)/(BAC-AC))
   # Indicator table header
   indicator_table_header_date: 日付
   indicator_table_header_today: 今日時点の指標
