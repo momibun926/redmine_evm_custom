@@ -59,6 +59,4 @@ ja:
   # Indicator table legend
   explanation_upper_row: 上段の値は時間
   explanation_lower_row: 下段の値は人日
-
-
-  label_not_avaliable: 利用不可
+  field_baseline_estimated_hours: ベースラインの見積もり

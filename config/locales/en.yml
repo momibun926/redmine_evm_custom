@@ -62,3 +62,4 @@ en:
   # Indicator table legend
   explanation_upper_row: Upper row is hours value.
   explanation_lower_row: Lower row is days value.(1day=8H)
+  field_baseline_estimated_hours: Baseline estimated time
