@@ -30,10 +30,12 @@ ja:
   title_evm_tab: EVM
   subtitle_evm_summary: サマリー
   subtitle_evm_graph: EVMグラフ
+  subtitle_evm_graph_performance: 効率指数チャート
   # Option
   label_option: 表示オプション
   label_forecast: グラフに予測値を表示する
   label_display_version: バージョンのグラフも表示する
+  label_display_performance: パフォーマンス指標のグラフも表示する
   # Tooltip
   explanation_basis: 基本
   explanation_difference: 差異
@@ -45,7 +47,7 @@ ja:
   explanation_ev: 出来高。チケットが完了となった時に見積もり工数を計上
   explanation_ac: 実コスト。作業時間の記録から集計
   explanation_sv: スケジュール差異（PV-EV）
-  explanation_cv: コスト差異（APV-AC)
+  explanation_cv: コスト差異（PV-AC)
   explanation_spi: スケジュール効率指数(EV÷PV)
   explanation_cpi: コスト効率指数(EV÷AC)
   explanation_cr: コスト効率指数(1以上であれば良好)
