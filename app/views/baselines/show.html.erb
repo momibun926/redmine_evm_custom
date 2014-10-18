@@ -6,9 +6,11 @@
   <%= javascript_include_tag 'highcharts.js',        :plugin => 'redmine_evm' %>
   <%= javascript_include_tag '../../../javascripts/select_list_move', :plugin => 'redmine_evm' %>
 <% end %>
+
 <!--Title-->
 <h2 id="evm-title"><%=l(:title_evm_tab)%></h2>
 <p id="evm-subtitle"><%=l(:subtitle_evm_tab)%></p>
+
 <!-- Baseline & Option -->  
 <%= form_tag baseline_path, method: :get, id: 'query_form' do %>
   <!-- Dropdown for baselines -->  
@@ -29,11 +31,17 @@
       <!-- Display Version Graph -->
       <%= check_box_tag 'display_version' , 'true', @display_version_is_enabled %>
       <%= label_tag l(:label_display_version) %>
-      <!-- Apply button -->
-      <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
+      <!-- Display performance Graph -->
+      <%= check_box_tag 'display_performance' , 'true', @display_performance_is_enabled %>
+      <%= label_tag l(:label_display_performance) %>
     </div>
   </fieldset>
+  <p>
+    <!-- Apply button -->
+    <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
+  </p>
 <% end %>
+
 <!--Indicator value-->
 <h3><%= l(:subtitle_evm_summary)%></h3>
 <div id="evm-suummary-wrapper">
@@ -41,13 +49,23 @@
   <%= render :partial => '/baselines/evm_measure' %>
 <% end %>
 </div>
+
 <!--Charts-->
 <h3><%= l(:subtitle_evm_graph)%></h3>
 <div id="evm-charts-wrapper">
+  
   <!-- Main Chart -->
   <h3 class="version"> <%= @project.name %></h3>
   <div id='evm-graph-lines' class='evm-chart'></div>
   <%= render :partial => '/baselines/chart_js', :locals => { maximum_chart_date: @project.maximum_chart_date(@baseline), project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled) } %>
+  
+  <!-- performnce Charts -->
+  <% if @display_performance_is_enabled %>
+    <h3 class="version"> <%= l(:subtitle_evm_graph_performance) %></h3>
+    <div id='evm-graph-lines-performance' class='evm-chart-performance'></div>
+    <%= render :partial => '/baselines/performance_chart_js', :locals => { maximum_chart_date: @project.maximum_chart_date(@baseline), project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled) } %>
+  <% end %>
+  
   <!-- Versions Charts -->
   <% if @display_version_is_enabled %>
     <% @project.versions.each do |version| %>
@@ -58,11 +76,14 @@
       <% end %>
     <% end %>
   <% end %>
+
 </div>
+
 <!--sidebar-->
 <% content_for :sidebar do %>
   <%= render :partial => '/baselines/evm_explanation' %> 
 <% end %>
+
 <!-- change dropdown -->
 <script>
   var dropdownMenu = $('#baseline_id');               //Dropdown element from html.

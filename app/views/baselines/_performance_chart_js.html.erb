@@ -1,0 +1,7 @@
+<script>
+  var actualWeek = <%= Time.now.to_i * 1000 %>;
+  var projectChartData = <%= raw project_chart_data.to_json %>;
+  var mainChartHtmlElement = 'evm-graph-lines-performance';
+  drawChartPerformance(projectChartData, mainChartHtmlElement, actualWeek); //from drawchart.js
+</script>
+

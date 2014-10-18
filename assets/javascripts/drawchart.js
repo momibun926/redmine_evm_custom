@@ -110,5 +110,103 @@ function drawChart(dataToChart, placeholder, nowdate){
             ]
       };
       var lg1 = new Highcharts.Chart(chartOptions);
+}
+function drawChartPerformance(dataToChart, placeholder, nowdate){ 
+    var data = dataToChart;
+    var chartOptions = {
+            credits:{
+                enabled: false
+            },
+            chart:{
+                renderTo: placeholder,
+                type: 'spline',
+                zoomType: 'x'
+            },
+            title:{
+                text: "",
+                align: "left"
+            },
+            xAxis:{
+                type: 'datetime',
+                dateTimeLabelFormats:{
+                    month: '%e. %b',
+                    year: '%b'
+                },
+                plotLines: [{
+                    color: '#FFAAAA',
+                    width: 1,
+                    value: nowdate,
+                    label: {
+                        text: 'Project is here',
+                        verticalAlign: 'bottom',
+                        textAlign: 'right',
+                        y: -10
+                    }
+                }]
+            },          
+            yAxis:{
+                min: 0,
+                minorGridLineWidth: 0,
+                minorTickInterval: 'auto',
+                minorTickLength: 10,
+                minorTickWidth: 1,
+                plotLines:[{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }],
+                plotBands: [{ 
+                    from: 0.9,
+                    to: 1.1,
+                    color: 'rgba(68, 170, 213, 0.1)',
+                    label:{
+                        style:{color: '#606060'}
+                    }
+                }]
+            },
+            tooltip:{
+                valueDecimals: 2, 
+                crosshairs: true,
+                shared: true
+            },
+            plotOptions:{
+                spline: {
+                    lineWidth: 2,
+                    states: {
+                        hover: {
+                            lineWidth: 3
+                        }
+                    },
+                    marker: {
+                        enabled: false
+                    }
+                }
+            },
+            legend:{
+                align: 'center',
+                verticalAlign: 'bottom',
+                borderWidth: 0,
+                itemDistance: 50
+            },
+            series:[
+                {
+                    name: 'SPI',
+                    color: '#0f75bc',
+                    data: data.spi
+                },
+                {
+                    name: 'CPI', 
+                    color: '#fcb040',
+                    data: data.cpi
+                },
+                {
+                    name: 'CR', 
+                    color: '#8cc63f',
+                    data: data.cr
+                }
+            ]
+      };
+      var lg1 = new Highcharts.Chart(chartOptions);
 
 }
+
