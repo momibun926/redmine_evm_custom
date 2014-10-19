@@ -131,18 +131,7 @@ function drawChartPerformance(dataToChart, placeholder){
                 dateTimeLabelFormats:{
                     month: '%e. %b',
                     year: '%b'
-                },
-                plotLines: [{
-                    color: '#FFAAAA',
-                    width: 1,
-                    value: nowdate,
-                    label: {
-                        text: 'Project is here',
-                        verticalAlign: 'bottom',
-                        textAlign: 'right',
-                        y: -10
-                    }
-                }]
+                }
             },          
             yAxis:{
                 min: 0,
