@@ -1,3 +1,8 @@
+Highcharts.setOptions({
+    global : {
+        useUTC : false
+    }
+});
 function drawChart(dataToChart, placeholder, nowdate){ 
     var data = dataToChart;
     var chartOptions = {
@@ -6,7 +11,7 @@ function drawChart(dataToChart, placeholder, nowdate){
             },
             chart:{
                 renderTo: placeholder,
-                type: 'spline',
+                type: 'line',
                 zoomType: 'x'
             },
             title:{
@@ -16,9 +21,13 @@ function drawChart(dataToChart, placeholder, nowdate){
             xAxis:{
                 type: 'datetime',
                 dateTimeLabelFormats:{
-                    month: '%e. %b',
-                    year: '%b'
+                    day: '%b-%e',
+                    week: '%b-%e',
+                    month: '%b-%y',
+                    year: '%Y'
                 },
+                minTickInterval: 24 * 3600 * 1000,
+                tickmarkPlacement: 'on',
                 plotLines: [{
                     color: '#FFAAAA',
                     width: 1,
@@ -49,7 +58,7 @@ function drawChart(dataToChart, placeholder, nowdate){
                 shared: true
             },
             plotOptions:{
-                spline: {
+                line: {
                     lineWidth: 2,
                     states: {
                         hover: {
@@ -119,7 +128,7 @@ function drawChartPerformance(dataToChart, placeholder){
             },
             chart:{
                 renderTo: placeholder,
-                type: 'spline',
+                type: 'line',
                 zoomType: 'x'
             },
             title:{
@@ -129,9 +138,13 @@ function drawChartPerformance(dataToChart, placeholder){
             xAxis:{
                 type: 'datetime',
                 dateTimeLabelFormats:{
-                    month: '%e. %b',
-                    year: '%b'
-                }
+                    day: '%b-%e',
+                    week: '%b-%e',
+                    month: '%b-%y',
+                    year: '%Y'
+                },
+                minTickInterval: 24 * 3600 * 1000,
+                tickmarkPlacement: 'on'
             },          
             yAxis:{
                 min: 0,
@@ -159,7 +172,7 @@ function drawChartPerformance(dataToChart, placeholder){
                 shared: true
             },
             plotOptions:{
-                spline: {
+                line: {
                     lineWidth: 2,
                     states: {
                         hover: {
@@ -180,7 +193,7 @@ function drawChartPerformance(dataToChart, placeholder){
             series:[
                 {
                     name: 'SPI',
-                    color: '#0f75bc',
+                    color: '#8cc63f',
                     data: data.spi
                 },
                 {
@@ -190,12 +203,11 @@ function drawChartPerformance(dataToChart, placeholder){
                 },
                 {
                     name: 'CR', 
-                    color: '#8cc63f',
+                    color: '#0f75bc',
                     data: data.cr
                 }
             ]
       };
       var lg1 = new Highcharts.Chart(chartOptions);
-
 }
 
