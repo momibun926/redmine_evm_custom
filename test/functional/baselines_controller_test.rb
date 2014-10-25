@@ -72,12 +72,12 @@ class BaselinesControllerTest < ActionController::TestCase
 
     put :update, :id => 1,
         :baseline => {:name => 'New baseline name',
-                     :due_date => Date.today.strftime("%Y-%m-%d")}
+                     :due_date => Time.now.to_date.strftime("%Y-%m-%d")}
     assert_redirected_to :controller => 'projects', :action => 'settings',
                          :tab => 'baselines', :id => 'ecookbook'
     baseline = Baseline.find(1)
     assert_equal 'New baseline name', baseline.name
-    assert_equal Date.today, baseline.due_date
+    assert_equal Time.now.to_date, baseline.due_date
   end
 
   def test_destroy

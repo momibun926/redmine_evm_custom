@@ -45,7 +45,7 @@ module RedmineEvm
         end_date   = issues.select("max(spent_on) as spent_on").joins(:time_entries).first.spent_on || start_date
 
         final_date = [maximum_chart_date(baseline), end_date].compact.max
-        date_today = Date.today
+        date_today = Time.now.to_date
         if final_date > date_today      
           final_date = date_today
         end
@@ -167,8 +167,8 @@ module RedmineEvm
         end
 
         def extend_earned_value_to_final_date ordered_earned_value, baseline_id
-          if Date.today < baselines.find(baseline_id).due_date
-            dat = Date.today
+          if Time.now.to_date < baselines.find(baseline_id).due_date
+            dat = Time.now.to_date
           else
             dat = baselines.find(baseline_id).due_date
           end

@@ -1,5 +1,5 @@
 <script>
-  var actualWeek = <%= Time.now.to_i * 1000 %>;
+  var actualWeek = <%= Time.now.utc.to_i * 1000 %>;
   var projectChartData = <%= raw project_chart_data.to_json %>;
   var mainChartHtmlElement = 'evm-graph-lines';
   drawChart(projectChartData, mainChartHtmlElement, actualWeek); //from drawchart.js

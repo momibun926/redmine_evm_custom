@@ -18,7 +18,7 @@ module Schedulable
 
   #Returns the actual (today's date) planned value.
   def planned_value
-    planned_value_by_week[Date.today].nil? ? budget_at_completion : planned_value_by_week[Date.today]
+    planned_value_by_week[Time.now.to_date].nil? ? budget_at_completion : planned_value_by_week[Date.today]
   end
 
   private

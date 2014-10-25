@@ -87,7 +87,7 @@ class Baseline < ActiveRecord::Base
 
   #Date
   def today_date
-    Date.today
+    Time.now.to_date
   end
 
   #Budget at Completion (BAC)
