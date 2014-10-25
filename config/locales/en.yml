@@ -30,7 +30,9 @@ en:
   title_evm_tab: EVM Indicators
   subtitle_evm_summary: EVM　Value
   subtitle_evm_graph: EVM Charts
-  subtitle_evm_graph_performance: Performance Charts
+  subtitle_evm_graph_main: Project
+  subtitle_evm_graph_performance: Performance
+  subtitle_evm_graph_version: Version
   # Option
   label_option: Option
   label_forecast: Forecast

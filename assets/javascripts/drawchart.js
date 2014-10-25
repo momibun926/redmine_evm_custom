@@ -1,9 +1,4 @@
-Highcharts.setOptions({
-    global : {
-        useUTC : false
-    }
-});
-function drawChart(dataToChart, placeholder, nowdate){ 
+function drawChart(dataToChart, placeholder, nowdate, graphtitle){ 
     var data = dataToChart;
     var chartOptions = {
             credits:{
@@ -15,8 +10,8 @@ function drawChart(dataToChart, placeholder, nowdate){
                 zoomType: 'x'
             },
             title:{
-                text: "",
-                align: "left"
+                text: graphtitle,
+                align: 'left'
             },
             xAxis:{
                 type: 'datetime',
@@ -120,7 +115,7 @@ function drawChart(dataToChart, placeholder, nowdate){
       };
       var lg1 = new Highcharts.Chart(chartOptions);
 }
-function drawChartPerformance(dataToChart, placeholder){ 
+function drawChartPerformance(dataToChart, placeholder, graphtitle){ 
     var data = dataToChart;
     var chartOptions = {
             credits:{
@@ -132,8 +127,8 @@ function drawChartPerformance(dataToChart, placeholder){
                 zoomType: 'x'
             },
             title:{
-                text: "",
-                align: "left"
+                text: graphtitle,
+                align: 'left'
             },
             xAxis:{
                 type: 'datetime',

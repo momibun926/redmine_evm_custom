@@ -25,7 +25,9 @@ ja:
   title_evm_tab: EVM
   subtitle_evm_summary: サマリー
   subtitle_evm_graph: EVMグラフ
-  subtitle_evm_graph_performance: 効率指数チャート
+  subtitle_evm_graph_main: プロジェクト
+  subtitle_evm_graph_performance: パフォーマンス
+  subtitle_evm_graph_version: バージョン
   # Option
   label_option: 表示オプション
   label_forecast: グラフに予測値を表示する
