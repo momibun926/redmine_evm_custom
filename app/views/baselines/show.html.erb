@@ -56,13 +56,13 @@
   <!-- Main Chart -->
   <h3 class="version"> <%= l(:subtitle_evm_graph_main) %></h3>
   <div id='evm-graph-lines' class='evm-chart'></div>
-  <%= render :partial => '/baselines/chart_js', :locals => { project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled) , project_name: @project.name + '-' + @baseline.name } %>
+  <%= render :partial => '/baselines/chart_js', :locals => { project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled, @display_performance_is_enabled) , project_name: @project.name + '-' + @baseline.name } %>
   
   <!-- performnce Charts -->
   <% if @display_performance_is_enabled %>
     <h3 class="version"> <%= l(:subtitle_evm_graph_performance) %></h3>
     <div id='evm-graph-lines-performance' class='evm-chart-performance'></div>
-    <%= render :partial => '/baselines/performance_chart_js', :locals => { project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled), project_name: @project.name + '-' + @baseline.name  } %>
+    <%= render :partial => '/baselines/performance_chart_js', :locals => { project_chart_data: @project.data_for_chart(@baseline, @forecast_is_enabled, @display_performance_is_enabled), project_name: @project.name + '-' + @baseline.name  } %>
   <% end %>
   
   <!-- Versions Charts -->
