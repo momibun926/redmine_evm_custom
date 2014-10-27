@@ -1,6 +1,6 @@
 <script>
   var graphTitleVersion = <%= raw (project_name + '-' + version.name).to_json %>;
-  var actualWeek = <%= Time.now.utc.to_i * 1000 %>;
+  var actualWeek = <%= Time.now.to_date.to_time(:utc).to_i * 1000 %>;
   var versionChartData = <%= raw version_chart_data.to_json %>;     //Get the versions Data from array
   var verisonChartHtmlElement = 'evm-graph-lines-version-' + <%= version.id%>;
   drawChart(versionChartData, verisonChartHtmlElement, actualWeek, graphTitleVersion); //from drawchart.js

@@ -25,7 +25,7 @@ function drawChart(dataToChart, placeholder, nowdate, graphtitle){
                 tickmarkPlacement: 'on',
                 plotLines: [{
                     color: '#FFAAAA',
-                    width: 1,
+                    width: 2,
                     value: nowdate,
                     label: {
                         text: 'Project is here',
