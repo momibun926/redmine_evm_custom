@@ -97,7 +97,7 @@ module RedmineEvm
         sum_earned_value
       end
 
-      def data_for_chart baseline, forecast_is_enabled
+      def data_for_chart baseline, forecast_is_enabled, performance_is_enabled
         chart_data = {}
         chart_data['planned_value'] = convert_to_chart(baseline.planned_value_by_week)
         chart_data['actual_cost']   = convert_to_chart(self.actual_cost_by_week(baseline))
@@ -110,24 +110,25 @@ module RedmineEvm
           chart_data['eac_top_line']          = convert_to_chart(baseline.eac_top_line)
         end
 
-        chart_spi = {}
-        chart_cpi = {}
-        chart_cr = {}
-        self.earned_value_by_week(baseline).keys.each do |date|
-           unless baseline.planned_value_by_week[date].nil?
-             chart_spi[date] = (self.earned_value_by_week(baseline)[date] / baseline.planned_value_by_week[date]).round(2)
-           end
-           unless self.actual_cost_by_week(baseline)[date].nil?
-             chart_cpi[date] = (self.earned_value_by_week(baseline)[date] / self.actual_cost_by_week(baseline)[date]).round(2)
-           end
-           unless chart_spi[date].nil? || chart_cpi[date].nil?
-             chart_cr[date] = (chart_spi[date] * chart_cpi[date]).round(2)
-           end
+        if (performance_is_enabled)
+          chart_spi = {}
+          chart_cpi = {}
+          chart_cr = {}
+          self.earned_value_by_week(baseline).keys.each do |date|
+             unless baseline.planned_value_by_week[date].nil?
+               chart_spi[date] = (self.earned_value_by_week(baseline)[date] / baseline.planned_value_by_week[date]).round(2)
+             end
+             unless self.actual_cost_by_week(baseline)[date].nil?
+               chart_cpi[date] = (self.earned_value_by_week(baseline)[date] / self.actual_cost_by_week(baseline)[date]).round(2)
+             end
+             unless chart_spi[date].nil? || chart_cpi[date].nil?
+               chart_cr[date] = (chart_spi[date] * chart_cpi[date]).round(2)
+             end
+          end
+          chart_data['spi']   = convert_to_chart(chart_spi)
+          chart_data['cpi']   = convert_to_chart(chart_cpi)
+          chart_data['cr']   = convert_to_chart(chart_cr)
         end
-        chart_data['spi']   = convert_to_chart(chart_spi)
-        chart_data['cpi']   = convert_to_chart(chart_cpi)
-        chart_data['cr']   = convert_to_chart(chart_cr)
-
 
         chart_data #Data ready for chart flot.js to consume.
       end
