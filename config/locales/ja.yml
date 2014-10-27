@@ -43,8 +43,8 @@ ja:
   explanation_pv: チケットの見積もり工数。作業に対する予算
   explanation_ev: 出来高。チケットが完了となった時に見積もり工数を計上
   explanation_ac: 実コスト。作業時間の記録から集計
-  explanation_sv: スケジュール差異。予定していた工数と達成している工数の差(PV-EV)
-  explanation_cv: コスト差異。予定していた作業時間と実績時間の差(PV-AC)
+  explanation_sv: スケジュール差異。予定していた工数と達成している工数の差(EV-PV)
+  explanation_cv: コスト差異。予定していた作業時間と実績時間の差(EV-AC)
   explanation_spi: スケジュール効率指数(EV÷PV) 1以下の場合は遅れ
   explanation_cpi: コスト効率指数(EV÷AC) 1以下の場合はコスト超過
   explanation_cr: プロジェクトパフォーマンス(1以上であれば良好)
