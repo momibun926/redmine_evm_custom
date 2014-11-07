@@ -24,6 +24,7 @@ class BaselinesController < ApplicationController
     @forecast_is_enabled = params[:forecast]
     @display_version_is_enabled = params[:display_version]
     @display_performance_is_enabled = params[:display_performance]
+    @display_explanation_is_enabled = params[:display_explanation]
 
     if(@project.has_time_entries_with_no_issue)
       flash[:warning] = l(:warning_log_time_with_no_issue)

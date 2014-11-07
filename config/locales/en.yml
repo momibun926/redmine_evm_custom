@@ -38,6 +38,7 @@ en:
   label_forecast: Forecast
   label_display_version: View version graph
   label_display_performance: View performance graph
+  label_display_explanation: Display explanation of EVM value on sidebar
   # Tooltip  
   explanation_basis: Basic
   explanation_difference: Difference
