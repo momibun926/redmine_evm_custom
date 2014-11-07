@@ -11,7 +11,7 @@ class Baseline < ActiveRecord::Base
   validates :name, :due_date, :presence => true
 
   before_create {update_baseline_status("#{l(:label_old_baseline)}", project_id)}
-  after_destroy {update_baseline_status("#{l(:label_current_baseline)}", project_id)}
+  after_create {update_baseline_status("#{l(:label_current_baseline)}", project_id)}
 
   acts_as_customizable
 
