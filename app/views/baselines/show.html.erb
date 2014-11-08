@@ -10,6 +10,7 @@
 <!--Title-->
 <h2 id="evm-title"><%=l(:title_evm_tab)%></h2>
 <p id="evm-subtitle"><%=l(:subtitle_evm_tab)%></p>
+
 <!-- Baseline & Option -->  
 <%= form_tag baseline_path, method: :get, id: 'query_form' do %>
   <!-- Dropdown for baselines -->  
@@ -26,13 +27,13 @@
       <table id="evm-option-table">
         <tr>
           <th>
-            Graph
+            <%= l(:label_graph) %>
           </th>
           <th>
-            Calculate
+            <%= l(:label_calculate) %>
           </th>
           <th>
-            Display
+            <%= l(:label_Display) %>
           </th>
         </tr>
         <tr>
@@ -86,7 +87,6 @@
     <%= link_to_function l(:button_apply), 'submit_query_form("query_form")', :class => 'icon icon-checked' %>
   </p>
 <% end %>
-
 <!--Indicator value-->
 <h3><%= l(:subtitle_evm_summary)%></h3>
 <div id="evm-suummary-wrapper">

@@ -21,6 +21,7 @@ ja:
   error_no_issues: チケットが作成されないとベースラインの設定は出来ません
   warning_log_time_with_no_issue: チケットに実績値が入力されていないので正確なコストが表示できません
   warning_log_time_before_start_date: チケットの開始日以前に実績値が入力されているため正確なコストが表示できません
+  warning_difference_baseline_earned: ベースラインとチケットの見積もり時間が異なっています。最新のチケット情報でベースラインを再度設定してください。
   # Main form
   title_evm_tab: EVM
   subtitle_evm_summary: サマリー
@@ -34,6 +35,9 @@ ja:
   label_display_version: バージョンのグラフも表示する
   label_display_performance: パフォーマンス指標のグラフも表示する
   label_display_explanation: EVM値の説明をサイドバーに表示する
+  label_graph: チャートの予測値
+  label_calculate : ETCの計算方法
+  label_Display : 説明の表示
   label_calc_method1: 楽観的
   label_calc_method2: 通常
   label_calc_method3: 悲観的

@@ -20,6 +20,10 @@ module RedmineEvm
 
     module ProjectInstanceMethods
 
+      def difference_baseline_actualearned baseline_id
+        issues.where("issues.id NOT IN (SELECT original_issue_id as id FROM baseline_issues WHERE baseline_id = ?)", baseline_id).select('sum(estimated_hours) as sum_hours').first.sum_hours || 0
+      end
+
       def filter_excluded_issues baseline_id
         issues.where("issues.id NOT IN (SELECT original_issue_id as id FROM baseline_issues WHERE exclude = 1 AND baseline_id = ?)", baseline_id)
       end
