@@ -37,6 +37,3 @@ end
 unless Project.included_modules.include?(RedmineEvm::Patches::ProjectVersionPatch)
   Project.send(:include, RedmineEvm::Patches::ProjectVersionPatch)
 end
-unless Version.included_modules.include?(RedmineEvm::Patches::ProjectVersionPatch)
-  Version.send(:include, RedmineEvm::Patches::ProjectVersionPatch)
-end

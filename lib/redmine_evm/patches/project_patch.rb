@@ -119,7 +119,11 @@ module RedmineEvm
                chart_spi[date] = (self.earned_value_by_week(baseline)[date] / baseline.planned_value_by_week[date]).round(2)
              end
              unless self.actual_cost_by_week(baseline)[date].nil?
-               chart_cpi[date] = (self.earned_value_by_week(baseline)[date] / self.actual_cost_by_week(baseline)[date]).round(2)
+               if self.actual_cost_by_week(baseline)[date] == 0
+                 chart_cpi[date] = 0.00
+               else
+                 chart_cpi[date] = (self.earned_value_by_week(baseline)[date] / self.actual_cost_by_week(baseline)[date]).round(2)
+               end
              end
              unless chart_spi[date].nil? || chart_cpi[date].nil?
                chart_cr[date] = (chart_spi[date] * chart_cpi[date]).round(2)
