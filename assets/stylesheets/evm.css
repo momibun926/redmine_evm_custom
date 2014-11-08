@@ -21,6 +21,7 @@ div[class*="evm-chart"]
 #evm-option-table td
 {
   padding: 5px;
+  width: 250px;
   text-align: left;
 }
 

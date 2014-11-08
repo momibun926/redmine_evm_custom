@@ -35,9 +35,9 @@
     <td rowspan="2"><%= @baseline.schedule_performance_index %> </td>
     <td rowspan="2"><%= @baseline.cost_performance_index %></td>
     <td rowspan="2"><%= @baseline.critical_ratio %></td>
-    <td><%= @baseline.estimate_at_completion_hours %> </td>
-    <td><%= @baseline.estimate_to_complete_hours %> </td>
-    <td><%= @baseline.variance_at_completion_hours %></td>
+    <td><%= @baseline.estimate_at_completion_hours(@calc_eac_method) %> </td>
+    <td><%= @baseline.estimate_to_complete_hours(@calc_eac_method) %> </td>
+    <td><%= @baseline.variance_at_completion_hours(@calc_eac_method) %></td>
     <td rowspan="2"><%= @baseline.difference_bac_eac_days %> Days</td>
     <td rowspan="2"><%= @baseline.to_Complete_performance_index %></td>
   </tr>
@@ -48,9 +48,9 @@
     <td><%= @baseline.today_ac_days %></td>
     <td><%= @baseline.schedule_variance_days %></td>
     <td><%= @baseline.cost_variance_days %></td>
-    <td><%= @baseline.estimate_at_completion_days %> </td>
-    <td><%= @baseline.estimate_to_complete_days %> </td>
-    <td><%= @baseline.variance_at_completion_days %></td>
+    <td><%= @baseline.estimate_at_completion_days(@calc_eac_method) %> </td>
+    <td><%= @baseline.estimate_to_complete_days(@calc_eac_method) %> </td>
+    <td><%= @baseline.variance_at_completion_days(@calc_eac_method) %></td>
   </tr>
 </table>
 <%= l(:explanation_upper_row)%> <%= l(:explanation_lower_row)%>

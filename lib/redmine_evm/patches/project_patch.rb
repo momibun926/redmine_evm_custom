@@ -97,17 +97,17 @@ module RedmineEvm
         sum_earned_value
       end
 
-      def data_for_chart baseline, forecast_is_enabled, performance_is_enabled
+      def data_for_chart baseline, forecast_is_enabled, performance_is_enabled, calc_eac_method
         chart_data = {}
         chart_data['planned_value'] = convert_to_chart(baseline.planned_value_by_week)
         chart_data['actual_cost']   = convert_to_chart(self.actual_cost_by_week(baseline))
         chart_data['earned_value']  = convert_to_chart(self.earned_value_by_week(baseline))
 
         if(forecast_is_enabled)
-          chart_data['actual_cost_forecast']  = convert_to_chart(baseline.actual_cost_forecast_line)
+          chart_data['actual_cost_forecast']  = convert_to_chart(baseline.actual_cost_forecast_line(calc_eac_method))
           chart_data['earned_value_forecast'] = convert_to_chart(baseline.earned_value_forecast_line)
           chart_data['bac_top_line']          = convert_to_chart(baseline.bac_top_line)
-          chart_data['eac_top_line']          = convert_to_chart(baseline.eac_top_line)
+          chart_data['eac_top_line']          = convert_to_chart(baseline.eac_top_line(calc_eac_method))
         end
 
         if (performance_is_enabled)

@@ -34,6 +34,9 @@ ja:
   label_display_version: バージョンのグラフも表示する
   label_display_performance: パフォーマンス指標のグラフも表示する
   label_display_explanation: EVM値の説明をサイドバーに表示する
+  label_calc_method1: 楽観的
+  label_calc_method2: 通常
+  label_calc_method3: 悲観的
   # Explanation title
   explanation_basis: 基本
   explanation_difference: 差異

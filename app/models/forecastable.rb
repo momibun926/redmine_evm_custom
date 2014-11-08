@@ -44,14 +44,9 @@ module Forecastable
   def estimate_at_completion_date
     return Time.now.to_date + (planned_value_by_week.count - 1 ) - earned_schedule
   end
-  #Estimate at Completion (EAC$) Yaxis
-  #http://www.pmknowledgecenter.com/node/166
-  def estimate_at_completion_cost
-    project.actual_cost(self) + (self.budget_at_completion - project.earned_value(self)) / self.cost_performance_index
-  end
-  
-  def actual_cost_forecast_line
-    [[ Time.now.to_date, project.actual_cost(self) ], [ estimate_at_completion_date, estimate_at_completion_cost ]] #The estimated line after actual cost
+
+  def actual_cost_forecast_line calc_eac_method
+    [[ Time.now.to_date, project.actual_cost(self) ], [ estimate_at_completion_date, estimate_at_completion_hours(calc_eac_method) ]] #The estimated line after actual cost
   end
 
   def earned_value_forecast_line
@@ -74,33 +69,42 @@ module Forecastable
   end
 
   #Ceiling line for the chart to indicate the project EAC value.
-  def eac_top_line
-    eac = estimate_at_completion_cost
+  def eac_top_line calc_eac_method
+    eac = estimate_at_completion_hours(calc_eac_method)
     eac_top_line = [[start_date, eac],[end_date_for_top_line, eac]]
   end
 
   #Variance at Completion (VAC)
-  def variance_at_completion_hours
-    (estimate_at_completion_cost - budget_at_completion).round(2)
+  def variance_at_completion_hours calc_eac_method
+    (estimate_to_complete_hours(calc_eac_method) - budget_at_completion).round(2)
   end
-  def variance_at_completion_days
-    ((estimate_at_completion_cost - budget_at_completion) / 8 ).round(1)
+  def variance_at_completion_days calc_eac_method
+    (variance_at_completion_hours(calc_eac_method) / 8 ).round(1)
   end
 
   #Estimate at Completion (EAC)
-  def estimate_at_completion_hours
-    estimate_at_completion_cost.round(2)
+  def estimate_at_completion_hours calc_eac_method
+    (project.actual_cost(self) + estimate_to_complete_hours(calc_eac_method)).round(2)
   end
-  def estimate_at_completion_days
-    (estimate_at_completion_cost / 8 ).round(1)
+  def estimate_at_completion_days calc_eac_method
+    (estimate_at_completion_hours(calc_eac_method) / 8 ).round(1)
   end
 
   #Estimate to Complete (ETC)
-  def estimate_to_complete_hours
-    ((estimate_at_completion_cost - project.actual_cost(self).to_f) / critical_ratio).round(2)
+  def estimate_to_complete_hours calc_eac_method
+    case calc_eac_method
+    when 'method1' then
+      (self.budget_at_completion - project.earned_value(self)).round(2)
+    when 'method2' then
+      ((self.budget_at_completion - project.earned_value(self)) / self.cost_performance_index).round(2)
+    when 'method3' then
+      ((self.budget_at_completion - project.earned_value(self)) / (self.cost_performance_index * self.schedule_performance_index)).round(2)
+    else
+      ((self.budget_at_completion - project.earned_value(self)) / self.cost_performance_index).round(2)
+    end
   end
-  def estimate_to_complete_days
-    ((estimate_at_completion_cost - project.actual_cost(self).to_f) / critical_ratio / 8 ).round(1)
+  def estimate_to_complete_days calc_eac_method
+    (estimate_to_complete_hours(calc_eac_method) / 8 ).round(1)
   end
 
   #To Complete Performance Index(TCPI)
