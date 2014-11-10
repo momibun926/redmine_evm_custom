@@ -29,9 +29,9 @@ class BaselinesController < ApplicationController
     if(@project.has_time_entries_with_no_issue)
       flash[:warning] = l(:warning_log_time_with_no_issue)
     end
-    if @project.difference_baseline_actualearned(@project.baselines.last.id) > 0 then
-      flash[:warning] = l(:warning_difference_baseline_earned)
-    end
+    #if @project.difference_baseline_actualearned(@project.baselines.last.id) > 0 then
+    #  flash[:warning] = l(:warning_difference_baseline_earned)
+    #end
 
   end
 
