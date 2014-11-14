@@ -61,7 +61,7 @@ module RedmineEvm
 
         def estimated_hours_for_chart update_hours, baseline_id
           if baseline_issues.find_by_baseline_id(baseline_id).nil? then
-            update_hours ? spent_hours : estimated_hours
+            update_hours ? closed? ? spent_hours : estimated_hours || 0 : estimated_hours || 0
           else
             update_hours ? closed? && baseline_issues.find_by_baseline_id(baseline_id).is_closed ? spent_hours : estimated_hours || 0 : estimated_hours || 0
           end
