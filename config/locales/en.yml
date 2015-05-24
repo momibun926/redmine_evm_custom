@@ -1,5 +1,9 @@
 ﻿# English strings go here for Rails i18n
 en:
+  # Roles and permissions
+  project_module_evm: EVM
+  permission_view_baselines: View baselines
+  permission_manage_baselines: Manabe baselines
   # Setting Tab
   label_baseline: Baseline
   label_baseline_plural: Baselines

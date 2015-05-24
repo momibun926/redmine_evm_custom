@@ -1,5 +1,9 @@
 ﻿# japanease translation
 ja:
+  # Roles and permissions
+  project_module_evm: EVM
+  permission_view_baselines: ベースラインの閲覧
+  permission_manage_baselines: ベースラインの管理
   # Setting Tab
   label_baseline: ベースライン
   label_baseline_plural: ベースライン
