@@ -70,7 +70,7 @@ module RedmineEvm
 
       def earned_value_by_week baseline_id
         earned_value_by_week = Hash.new { |h, k| h[k] = 0 }
-        baselines.find(baseline_id).update_hours ? update_hours = true : update_hours = false
+        baselines.find_by_id(baseline_id).update_hours ? update_hours = true : update_hours = false
         issues.each do |issue|
           next if issue.baseline_issues.find_by_baseline_id(baseline_id).try(:exclude) || !issue.leaf?
           issue.days.each do |day|
@@ -85,7 +85,7 @@ module RedmineEvm
         sum_earned_value = 0
         issues.each do |issue|
           next if issue.baseline_issues.where(original_issue_id: issue.id, baseline_id: baseline_id).first.try(:exclude) || !issue.leaf?
-          if baselines.find(baseline_id).update_hours
+          if baselines.find_by_id(baseline_id).update_hours
             if issue.closed?
               next if issue.spent_hours == 0
               sum_earned_value += issue.spent_hours * (issue.done_ratio / 100.0)    
@@ -176,10 +176,10 @@ module RedmineEvm
         end
 
         def extend_earned_value_to_final_date ordered_earned_value, baseline_id
-          if Time.now.to_date < baselines.find(baseline_id).due_date
+          if Time.now.to_date < baselines.find_by_id(baseline_id).due_date
             dat = Time.now.to_date
           else
-            dat = baselines.find(baseline_id).due_date
+            dat = baselines.find_by_id(baseline_id).due_date
           end
           unless ordered_earned_value.empty?
             if ordered_earned_value.keys.last+1 <= dat

@@ -75,7 +75,7 @@ class BaselinesControllerTest < ActionController::TestCase
                      :due_date => Time.now.to_date.strftime("%Y-%m-%d")}
     assert_redirected_to :controller => 'projects', :action => 'settings',
                          :tab => 'baselines', :id => 'ecookbook'
-    baseline = Baseline.find(1)
+    baseline = Baseline.find_by_id(1)
     assert_equal 'New baseline name', baseline.name
     assert_equal Time.now.to_date, baseline.due_date
   end

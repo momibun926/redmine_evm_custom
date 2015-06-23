@@ -3,7 +3,7 @@ require File.expand_path('../../../test_helper', __FILE__)
 class ProjectPatchTest < ActiveSupport::TestCase
   fixtures :projects
 
-ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).directory + '/test/fixtures/',
+ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find_by_id(:redmine_evm).directory + '/test/fixtures/',
                                          [ :issues, 
                                            :time_entries,
                                            :time_entries,
@@ -13,7 +13,7 @@ ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).direct
                                            :baseline_versions ])         
 
   def setup
-    @baseline = Baseline.find(1)
+    @baseline = Baseline.find_by_id(1)
     @project = @baseline.project
   end
 
@@ -22,7 +22,7 @@ ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).direct
   end
 
   def test_filter_excluded_issues_with_one_version_excluded
-    baseline_version = @baseline.baseline_versions.find(93)
+    baseline_version = @baseline.baseline_versions.find_by_id(93)
     baseline_version.exclude = true
     baseline_version.save
     baseline_version.baseline_issues.each do |bi|

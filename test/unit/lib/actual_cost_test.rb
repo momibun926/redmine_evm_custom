@@ -3,7 +3,7 @@ require File.expand_path('../../../test_helper', __FILE__)
 class ActualCostTest < ActiveSupport::TestCase
   fixtures :projects
 
-ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).directory + '/test/fixtures/',
+ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find_by_id(:redmine_evm).directory + '/test/fixtures/',
                                          [ :issues, 
                                            :time_entries,
                                            :time_entries,
@@ -13,7 +13,7 @@ ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).direct
                                            :baseline_versions ])         
 
   def setup
-    @baseline = Baseline.find(1)
+    @baseline = Baseline.find_by_id(1)
     @project = @baseline.project
   end
 
@@ -31,12 +31,12 @@ ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).direct
   end
 
   def test_version_actual_cost
-    version = @project.versions.find(165)
+    version = @project.versions.find_by_id(165)
     assert_equal 0, version.actual_cost(@baseline)
   end
 
   def test_version_actual_cost_by_week
-    version = @project.versions.find(165)
+    version = @project.versions.find_by_id(165)
     assert_equal [], version.actual_cost_by_week(@baseline).to_a
   end
 
