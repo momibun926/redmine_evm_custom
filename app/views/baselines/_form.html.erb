@@ -18,9 +18,9 @@
     <% end %>
   </p>
   <p>
-    <%= label_tag "Target Version"%>
+    <%= label_tag l(:field_fixed_version)%>
     <%# check_box_tag :enable_taget_versions, :true, false, disabled: disabled %>
-    <%= select_tag :operator_target_versions, options_for_select(["any", "is", "is not", "none"]), hidden: disabled %>
+    <%= select_tag :operator_target_versions, options_for_select([[l(:label_any), "any"],[l(:label_equals), "is"],[l(:label_not_equals), "is not"],[l(:label_none), "none"]]), hidden: disabled %>
     <%= select_tag :selected_target_versions, options_from_collection_for_select(project.versions, :id, :name, @baseline.get_targeted_versions ), multiple: true, disabled: disabled, hidden: true %>
   </p> 
   <p>

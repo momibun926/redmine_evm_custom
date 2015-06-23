@@ -3,7 +3,7 @@ require File.expand_path('../../test_helper', __FILE__)
 class ForecastableTest < ActiveSupport::TestCase
   fixtures :projects
 
-  ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).directory + '/test/fixtures/',
+  ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find_by_id(:redmine_evm).directory + '/test/fixtures/',
                                          [ :issues, 
                                            :time_entries,
                                            :time_entries,
@@ -13,7 +13,7 @@ class ForecastableTest < ActiveSupport::TestCase
                                            :baseline_versions ])
 
   def setup
-    @baseline = Baseline.find(1)
+    @baseline = Baseline.find_by_id(1)
     @project = @baseline.project
   end
 

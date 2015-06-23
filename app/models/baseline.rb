@@ -9,6 +9,7 @@ class Baseline < ActiveRecord::Base
   has_many :baseline_versions, dependent: :destroy
 
   validates :name, :due_date, :presence => true
+  attr_protected :id
 
   before_create {update_baseline_status("#{l(:label_old_baseline)}", project_id)}
   after_create {update_baseline_status("#{l(:label_current_baseline)}", project_id)}
@@ -69,7 +70,7 @@ class Baseline < ActiveRecord::Base
   end
 
   def update_baseline_status status, project_id
-    project = Project.find(project_id) 
+    project = Project.find_by_id(project_id) 
     baseline = project.baselines.last 
     if baseline 
       baseline.state = status 

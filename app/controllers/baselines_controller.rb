@@ -65,7 +65,7 @@ class BaselinesController < ApplicationController
   end
 
   def update
-    if request.put? && params[:baseline]
+    if (request.put? || request.patch?) && params[:baseline]
       attributes = params[:baseline].dup
       @baseline.safe_attributes = attributes
 

@@ -70,7 +70,7 @@ module RedmineEvm
 
       def earned_value_by_week baseline_id
         earned_value_by_week = Hash.new { |h, k| h[k] = 0 }
-        baselines.find(baseline_id).update_hours ? update_hours = true : update_hours = false
+        baselines.find_by_id(baseline_id).update_hours ? update_hours = true : update_hours = false
         issues.each do |issue|
           next if issue.baseline_issues.find_by_baseline_id(baseline_id).try(:exclude) || !issue.leaf?
           issue.days.each do |day|
@@ -85,7 +85,7 @@ module RedmineEvm
         sum_earned_value = 0
         issues.each do |issue|
           next if issue.baseline_issues.where(original_issue_id: issue.id, baseline_id: baseline_id).first.try(:exclude) || !issue.leaf?
-          if baselines.find(baseline_id).update_hours
+          if baselines.find_by_id(baseline_id).update_hours
             if issue.closed?
               next if issue.spent_hours == 0
               sum_earned_value += issue.spent_hours * (issue.done_ratio / 100.0)    
@@ -103,9 +103,12 @@ module RedmineEvm
 
       def data_for_chart baseline, forecast_is_enabled, performance_is_enabled, calc_eac_method
         chart_data = {}
-        chart_data['planned_value'] = convert_to_chart(baseline.planned_value_by_week)
-        chart_data['actual_cost']   = convert_to_chart(self.actual_cost_by_week(baseline))
-        chart_data['earned_value']  = convert_to_chart(self.earned_value_by_week(baseline))
+        planned_values = baseline.planned_value_by_week
+        earned_values = self.earned_value_by_week(baseline)
+        actual_costs = self.actual_cost_by_week(baseline)
+        chart_data['planned_value'] = convert_to_chart(planned_values)
+        chart_data['actual_cost']   = convert_to_chart(actual_costs)
+        chart_data['earned_value']  = convert_to_chart(earned_values)
 
         if(forecast_is_enabled)
           chart_data['actual_cost_forecast']  = convert_to_chart(baseline.actual_cost_forecast_line(calc_eac_method))
@@ -118,15 +121,15 @@ module RedmineEvm
           chart_spi = {}
           chart_cpi = {}
           chart_cr = {}
-          self.earned_value_by_week(baseline).keys.each do |date|
-             unless baseline.planned_value_by_week[date].nil?
-               chart_spi[date] = (self.earned_value_by_week(baseline)[date] / baseline.planned_value_by_week[date]).round(2)
+          earned_values.keys.each do |date|
+             unless planned_values[date].nil?
+               chart_spi[date] = (earned_values[date] / planned_values[date]).round(2)
              end
-             unless self.actual_cost_by_week(baseline)[date].nil?
-               if self.actual_cost_by_week(baseline)[date] == 0
+             unless actual_costs[date].nil?
+               if actual_costs[date] == 0
                  chart_cpi[date] = 0.00
                else
-                 chart_cpi[date] = (self.earned_value_by_week(baseline)[date] / self.actual_cost_by_week(baseline)[date]).round(2)
+                 chart_cpi[date] = (earned_values[date] / actual_costs[date]).round(2)
                end
              end
              unless chart_spi[date].nil? || chart_cpi[date].nil?
@@ -176,10 +179,10 @@ module RedmineEvm
         end
 
         def extend_earned_value_to_final_date ordered_earned_value, baseline_id
-          if Time.now.to_date < baselines.find(baseline_id).due_date
+          if Time.now.to_date < baselines.find_by_id(baseline_id).due_date
             dat = Time.now.to_date
           else
-            dat = baselines.find(baseline_id).due_date
+            dat = baselines.find_by_id(baseline_id).due_date
           end
           unless ordered_earned_value.empty?
             if ordered_earned_value.keys.last+1 <= dat

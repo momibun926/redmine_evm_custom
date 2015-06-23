@@ -3,7 +3,7 @@ require File.expand_path('../../../test_helper', __FILE__)
 class EarnedValueTest < ActiveSupport::TestCase
   fixtures :projects
 
-ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).directory + '/test/fixtures/',
+ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find_by_id(:redmine_evm).directory + '/test/fixtures/',
                                          [ :issues, 
                                            :time_entries,
                                            :time_entries,
@@ -13,7 +13,7 @@ ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).direct
                                            :baseline_versions ])
 
   def setup
-    @baseline = Baseline.find(1)
+    @baseline = Baseline.find_by_id(1)
     @project = @baseline.project
   end     
 
@@ -28,7 +28,7 @@ ActiveRecord::Fixtures.create_fixtures(Redmine::Plugin.find(:redmine_evm).direct
   end
 
   def test_version_earned_value_by_week
-    version = @project.versions.find(165)
+    version = @project.versions.find_by_id(165)
     assert_equal 0.0, version.earned_value_by_week(@baseline.id).to_a.last[1]
   end
 
