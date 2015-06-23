@@ -8,7 +8,7 @@ class Baseline < ActiveRecord::Base
   has_many :baseline_issues, dependent: :destroy
   has_many :baseline_versions, dependent: :destroy
 
-  validates :name, :due_date, :presence => true
+  validates_presence_of :name, :due_date
 
   before_create {update_baseline_status("#{l(:label_old_baseline)}", project_id)}
   after_create {update_baseline_status("#{l(:label_current_baseline)}", project_id)}
