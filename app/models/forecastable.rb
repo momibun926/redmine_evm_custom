@@ -76,7 +76,7 @@ module Forecastable
 
   #Variance at Completion (VAC)
   def variance_at_completion_hours calc_eac_method
-    (estimate_to_complete_hours(calc_eac_method) - budget_at_completion).round(2)
+    (budget_at_completion - estimate_at_completion_hours(calc_eac_method)).round(2)
   end
   def variance_at_completion_days calc_eac_method
     (variance_at_completion_hours(calc_eac_method) / 8 ).round(1)
