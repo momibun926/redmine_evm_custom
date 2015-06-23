@@ -4,7 +4,7 @@
   <%= javascript_include_tag 'drawchart',            :plugin => 'redmine_evm' %>
   <%= javascript_include_tag 'jquery.1.9.1.min.js',  :plugin => 'redmine_evm' %>
   <%= javascript_include_tag 'highcharts.js',        :plugin => 'redmine_evm' %>
-  <%= javascript_include_tag '../../../javascripts/select_list_move', :plugin => 'redmine_evm' %>
+  <%= javascript_include_tag '../../../javascripts/application', :plugin => 'redmine_evm' %>
 <% end %>
 
 <!--Title-->
@@ -134,6 +134,6 @@
 <script>
   var dropdownMenu = $('#baseline_id');               //Dropdown element from html.
   dropdownMenu.change(function() {                    //When selected.
-    window.location = '/redmine/baselines/' + $(this).val();  //Redirect to selected baseline.
+    window.location = '/baselines/' + $(this).val();  //Redirect to selected baseline.
   });
 </script>
