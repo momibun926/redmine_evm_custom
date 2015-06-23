@@ -4,6 +4,7 @@ class BaselineIssue < ActiveRecord::Base
   belongs_to :baseline
   belongs_to :baseline_version
   belongs_to :issue, foreign_key: 'original_issue_id'
+  attr_accessible :original_issue_id, :done_ratio, :status, :due_date, :start_date, :exclude, :update_hours, :estimated_hours, :spent_hours, :closed_on, :is_closed, :is_leaf
   @@days_by_week = {}
 
   def days  
