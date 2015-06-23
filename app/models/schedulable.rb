@@ -25,7 +25,7 @@ module Schedulable
     
     def calculate_planned_value_by_week
       planned_value_by_week = {}
-      (start_date..end_date).each do |date|
+      (start_date.to_date..end_date).each do |date|
         planned_value_by_week[date] = 0
       end
       unless baseline_issues.empty?
